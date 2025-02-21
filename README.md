@@ -8,7 +8,7 @@ This project should be work on Windows, Linux, and hopefully MacOS
 
 You need a C++ compiler, Meson and at least version 3 of wxWidgets
 
-You may need to install wxformbuilder to edit / modify the [GUI](/gui/wxTestPadGUI.fbp)
+You may need to install wxFormBuilder to edit / modify the [GUI](/gui/wxTestPadGUI.fbp)
 
 Be super careful before running it, it always depends on your system!
 > Install libraries in Arch Linux
