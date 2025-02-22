@@ -43,6 +43,7 @@ class MainFrame : public wxFrame
 		// Virtual event handlers, override them in your derived class
 		virtual void MainFrameOnActivate( wxActivateEvent& event ) { event.Skip(); }
 		virtual void MainFrameOnClose( wxCloseEvent& event ) { event.Skip(); }
+		virtual void m_menuItemOpenOnMenuSelection( wxCommandEvent& event ) { event.Skip(); }
 		virtual void m_menuItemExitOnMenuSelection( wxCommandEvent& event ) { event.Skip(); }
 		virtual void m_menuItemAboutOnMenuSelection( wxCommandEvent& event ) { event.Skip(); }
 

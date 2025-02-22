@@ -17,6 +17,11 @@ void wxTpGUIMainFrame::MainFrameOnClose( wxCloseEvent& event )
 // TODO: Implement MainFrameOnClose
 }
 
+void wxTpGUIMainFrame::m_menuItemOpenOnMenuSelection( wxCommandEvent& event )
+{
+// TODO: Implement m_menuItemOpenOnMenuSelection
+}
+
 void wxTpGUIMainFrame::m_menuItemExitOnMenuSelection( wxCommandEvent& event )
 {
 // TODO: Implement m_menuItemExitOnMenuSelection

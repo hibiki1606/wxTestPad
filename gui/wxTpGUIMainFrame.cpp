@@ -4,20 +4,47 @@
 
 wxTpGUIMainFrame::wxTpGUIMainFrame(wxWindow* parent) : MainFrame(parent) {
     this->SetTitle(TP_PROJECT_NAME);
+    this->SetStatusText("The app is ready !");
 }
 
 void wxTpGUIMainFrame::MainFrameOnActivate(wxActivateEvent& event) {}
 
 void wxTpGUIMainFrame::MainFrameOnClose(wxCloseEvent& event) {
-    wxMessageDialog dialog(this, "Are you sure you want to close?",
+    wxMessageDialog dialog(this, _("Are you sure you want to close?"),
                            TP_PROJECT_NAME, wxYES_NO | wxICON_QUESTION);
     int result = dialog.ShowModal();
 
     if (result == wxID_YES) {
-        event.Skip();
+        event.Skip(); // Continue exit
     } else if (result == wxID_NO) {
-        event.Veto();
+        event.Veto(); // Abort exit
     }
+}
+
+void wxTpGUIMainFrame::m_menuItemOpenOnMenuSelection(wxCommandEvent& event) {
+    wxFileDialog openFileDialog(
+        this, "Open text document", wxEmptyString, wxEmptyString,
+        "Text documents (*.txt;*.text)|*.txt;*.text|All files (*.*)|*.*",
+        wxFD_OPEN | wxFD_FILE_MUST_EXIST);
+
+    int result = openFileDialog.ShowModal();
+
+    if (result != wxID_OK) return;
+
+    wxString filePath = openFileDialog.GetPath();
+
+    this->SetStatusText(filePath);
+
+    wxFileInputStream input(filePath);
+    wxTextInputStream text(input, "\x09", wxConvUTF8);
+
+    wxString contents;
+
+    while (input.IsOk() && !input.Eof()) {
+        contents += text.ReadLine() + "\n";
+    }
+
+    this->m_textCtrl->SetValue(contents);
 }
 
 void wxTpGUIMainFrame::m_menuItemExitOnMenuSelection(wxCommandEvent& event) {
