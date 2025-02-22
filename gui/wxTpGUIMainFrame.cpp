@@ -4,7 +4,7 @@
 wxTpGUIMainFrame::wxTpGUIMainFrame(wxWindow* parent) : MainFrame(parent) {}
 
 void wxTpGUIMainFrame::MainFrameOnClose(wxCloseEvent& event) {
-    wxMessageDialog dialog(this, "Are you sure you want to close?", "wxTestPad",
+    wxMessageDialog dialog(this, "Are you sure you want to close?", TP_PROJECT_NAME,
                            wxYES_NO | wxICON_QUESTION);
     int result = dialog.ShowModal();
 

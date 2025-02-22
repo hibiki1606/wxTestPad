@@ -3,8 +3,6 @@
 #include "./wxtestpad.h"
 #include "./gui/wxTpGUIMainFrame.h"
 
-#define PROJECT_NAME "wxTestPad"
-
 class wxTestPadApp : public wxApp {
    public:
     virtual bool OnInit() {
