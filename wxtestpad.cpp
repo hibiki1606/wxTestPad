@@ -1,7 +1,7 @@
 #include <wx/wxprec.h>
 
 #include "./wxtestpad.h"
-#include "./gui/wxTpGUIMainFrame.h"
+#include "./gui/buildergen/wxTpGUIMainFrame.h"
 
 class wxTestPadApp : public wxApp {
    public:

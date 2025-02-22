@@ -1,11 +1,16 @@
-#include "wxTpGUIMainFrame.h"
+#include "buildergen/wxTpGUIMainFrame.h"
+
 #include "../wxtestpad.h"
 
-wxTpGUIMainFrame::wxTpGUIMainFrame(wxWindow* parent) : MainFrame(parent) {}
+wxTpGUIMainFrame::wxTpGUIMainFrame(wxWindow* parent) : MainFrame(parent) {
+    this->SetTitle(TP_PROJECT_NAME);
+}
+
+void wxTpGUIMainFrame::MainFrameOnActivate(wxActivateEvent& event) {}
 
 void wxTpGUIMainFrame::MainFrameOnClose(wxCloseEvent& event) {
-    wxMessageDialog dialog(this, "Are you sure you want to close?", TP_PROJECT_NAME,
-                           wxYES_NO | wxICON_QUESTION);
+    wxMessageDialog dialog(this, "Are you sure you want to close?",
+                           TP_PROJECT_NAME, wxYES_NO | wxICON_QUESTION);
     int result = dialog.ShowModal();
 
     if (result == wxID_YES) {

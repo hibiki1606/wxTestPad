@@ -15,6 +15,7 @@ class wxTpGUIMainFrame : public MainFrame
 {
 	protected:
 		// Handlers for MainFrame events.
+		void MainFrameOnActivate( wxActivateEvent& event );
 		void MainFrameOnClose( wxCloseEvent& event );
 		void m_menuItemExitOnMenuSelection( wxCommandEvent& event );
 		void m_menuItemAboutOnMenuSelection( wxCommandEvent& event );
@@ -22,10 +23,6 @@ class wxTpGUIMainFrame : public MainFrame
 		/** Constructor */
 		wxTpGUIMainFrame( wxWindow* parent );
 	//// end generated class members
-
-
-
-
 
 };
 

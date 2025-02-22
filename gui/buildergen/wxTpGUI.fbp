@@ -60,6 +60,7 @@
       <property name="window_name"></property>
       <property name="window_style">wxTAB_TRAVERSAL</property>
       <property name="xrc_skip_sizer">1</property>
+      <event name="OnActivate">MainFrameOnActivate</event>
       <event name="OnClose">MainFrameOnClose</event>
       <object class="wxMenuBar" expanded="true">
         <property name="bg"></property>
