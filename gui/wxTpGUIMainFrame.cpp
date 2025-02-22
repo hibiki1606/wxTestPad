@@ -10,8 +10,9 @@ wxTpGUIMainFrame::wxTpGUIMainFrame(wxWindow* parent) : MainFrame(parent) {
 void wxTpGUIMainFrame::MainFrameOnActivate(wxActivateEvent& event) {}
 
 void wxTpGUIMainFrame::MainFrameOnClose(wxCloseEvent& event) {
-    wxMessageDialog dialog(this, _("Are you sure you want to close?"),
-                           TP_PROJECT_NAME, wxYES_NO | wxICON_QUESTION);
+    wxMessageDialog dialog(
+        this, "Are you sure you want to close?",
+        TP_PROJECT_NAME, wxYES_NO | wxICON_QUESTION);
     int result = dialog.ShowModal();
 
     if (result == wxID_YES) {
@@ -48,8 +49,7 @@ void wxTpGUIMainFrame::m_menuItemOpenOnMenuSelection(wxCommandEvent& event) {
 
 void wxTpGUIMainFrame::m_menuItemSaveAsOnMenuSelection(wxCommandEvent& event) {
     wxFileDialog saveFileDialog(
-        this, "Save text document", wxEmptyString,
-        "document.txt",
+        this, "Save text document", wxEmptyString, "document.txt",
         "Text documents (*.txt;*.text)|*.txt;*.text",
         wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
     int result = saveFileDialog.ShowModal();
