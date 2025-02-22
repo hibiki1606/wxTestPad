@@ -32,9 +32,6 @@ void wxTpGUIMainFrame::m_menuItemOpenOnMenuSelection(wxCommandEvent& event) {
     if (result != wxID_OK) return;
 
     wxString filePath = openFileDialog.GetPath();
-
-    this->SetStatusText(filePath);
-
     wxFileInputStream input(filePath);
     wxTextInputStream text(input, "\x09", wxConvUTF8);
 
@@ -45,6 +42,8 @@ void wxTpGUIMainFrame::m_menuItemOpenOnMenuSelection(wxCommandEvent& event) {
     }
 
     this->m_textCtrl->SetValue(contents);
+    
+    this->SetStatusText(wxString::Format("'%s' opened!", filePath));
 }
 
 void wxTpGUIMainFrame::m_menuItemSaveAsOnMenuSelection(wxCommandEvent& event) {
@@ -73,6 +72,8 @@ void wxTpGUIMainFrame::m_menuItemSaveAsOnMenuSelection(wxCommandEvent& event) {
     size_t textLength = utf8Buffer.length();
     
     output.Write(utf8Buffer.data(), textLength);
+
+    this->SetStatusText(wxString::Format("File saved to: '%s'!", filePath));
 }
 
 void wxTpGUIMainFrame::m_menuItemExitOnMenuSelection(wxCommandEvent& event) {
