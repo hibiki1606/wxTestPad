@@ -18,12 +18,14 @@ class wxTpGUIMainFrame : public MainFrame
 		void MainFrameOnActivate( wxActivateEvent& event );
 		void MainFrameOnClose( wxCloseEvent& event );
 		void m_menuItemOpenOnMenuSelection( wxCommandEvent& event );
+		void m_menuItemSaveAsOnMenuSelection( wxCommandEvent& event );
 		void m_menuItemExitOnMenuSelection( wxCommandEvent& event );
 		void m_menuItemAboutOnMenuSelection( wxCommandEvent& event );
 	public:
 		/** Constructor */
 		wxTpGUIMainFrame( wxWindow* parent );
 	//// end generated class members
+
 
 
 };

@@ -44,6 +44,7 @@ class MainFrame : public wxFrame
 		virtual void MainFrameOnActivate( wxActivateEvent& event ) { event.Skip(); }
 		virtual void MainFrameOnClose( wxCloseEvent& event ) { event.Skip(); }
 		virtual void m_menuItemOpenOnMenuSelection( wxCommandEvent& event ) { event.Skip(); }
+		virtual void m_menuItemSaveAsOnMenuSelection( wxCommandEvent& event ) { event.Skip(); }
 		virtual void m_menuItemExitOnMenuSelection( wxCommandEvent& event ) { event.Skip(); }
 		virtual void m_menuItemAboutOnMenuSelection( wxCommandEvent& event ) { event.Skip(); }
 

@@ -22,6 +22,11 @@ void wxTpGUIMainFrame::m_menuItemOpenOnMenuSelection( wxCommandEvent& event )
 // TODO: Implement m_menuItemOpenOnMenuSelection
 }
 
+void wxTpGUIMainFrame::m_menuItemSaveAsOnMenuSelection( wxCommandEvent& event )
+{
+// TODO: Implement m_menuItemSaveAsOnMenuSelection
+}
+
 void wxTpGUIMainFrame::m_menuItemExitOnMenuSelection( wxCommandEvent& event )
 {
 // TODO: Implement m_menuItemExitOnMenuSelection

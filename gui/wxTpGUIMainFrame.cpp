@@ -15,9 +15,9 @@ void wxTpGUIMainFrame::MainFrameOnClose(wxCloseEvent& event) {
     int result = dialog.ShowModal();
 
     if (result == wxID_YES) {
-        event.Skip(); // Continue exit
+        event.Skip();  // Continue exit
     } else if (result == wxID_NO) {
-        event.Veto(); // Abort exit
+        event.Veto();  // Abort exit
     }
 }
 
@@ -26,7 +26,6 @@ void wxTpGUIMainFrame::m_menuItemOpenOnMenuSelection(wxCommandEvent& event) {
         this, "Open text document", wxEmptyString, wxEmptyString,
         "Text documents (*.txt;*.text)|*.txt;*.text|All files (*.*)|*.*",
         wxFD_OPEN | wxFD_FILE_MUST_EXIST);
-
     int result = openFileDialog.ShowModal();
 
     if (result != wxID_OK) return;
@@ -45,6 +44,35 @@ void wxTpGUIMainFrame::m_menuItemOpenOnMenuSelection(wxCommandEvent& event) {
     }
 
     this->m_textCtrl->SetValue(contents);
+}
+
+void wxTpGUIMainFrame::m_menuItemSaveAsOnMenuSelection(wxCommandEvent& event) {
+    wxFileDialog saveFileDialog(
+        this, "Save text document", wxEmptyString,
+        "document.txt",
+        "Text documents (*.txt;*.text)|*.txt;*.text",
+        wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
+    int result = saveFileDialog.ShowModal();
+
+    if (result != wxID_OK) return;
+
+    wxString filePath = saveFileDialog.GetPath();
+    wxFileOutputStream output(filePath);
+    
+    if (!output.IsOk()) {
+        wxMessageDialog dialog(
+            this, "Can't save the file to the selected path !",
+            TP_PROJECT_NAME, wxOK | wxICON_ERROR);
+        dialog.ShowModal();
+        return;
+    }
+
+    wxString textToSave = this->m_textCtrl->GetValue();
+
+    wxCharBuffer utf8Buffer = textToSave.utf8_str();
+    size_t textLength = utf8Buffer.length();
+    
+    output.Write(utf8Buffer.data(), textLength);
 }
 
 void wxTpGUIMainFrame::m_menuItemExitOnMenuSelection(wxCommandEvent& event) {
