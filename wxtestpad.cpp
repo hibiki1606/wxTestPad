@@ -1,5 +1,5 @@
 #include "./wxtestpad.h"
-#include "./gui/buildergen/wxTpGUIMainFrame.h"
+#include "./gui/wxTpGUIMainFrame.h"
 
 class wxTestPadApp : public wxApp {
    public:
