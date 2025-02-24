@@ -1,4 +1,4 @@
-#include "buildergen/wxTpGUIMainFrame.h"
+#include "wxTpGUIMainFrame.h"
 
 #include "../wxtestpad.h"
 
@@ -11,14 +11,16 @@ void wxTpGUIMainFrame::MainFrameOnActivate(wxActivateEvent& event) {}
 
 void wxTpGUIMainFrame::MainFrameOnClose(wxCloseEvent& event) {
     wxMessageDialog dialog(
-        this, "Are you sure you want to close?",
-        TP_PROJECT_NAME, wxYES_NO | wxICON_QUESTION);
+        this, "You have unsaved changes,\nDo you want to save them before closing this app?",
+        TP_PROJECT_NAME, wxYES_NO | wxCANCEL | wxICON_QUESTION);
     int result = dialog.ShowModal();
 
     if (result == wxID_YES) {
         event.Skip();  // Continue exit
     } else if (result == wxID_NO) {
         event.Veto();  // Abort exit
+    } else if (result == wxID_CANCEL) {
+        
     }
 }
 
