@@ -16,6 +16,6 @@ wxString TpLogFormatter::Format(wxLogLevel level, const wxString& msg, const wxL
         // case wxLOG_Max: break;
         default: logKind = "Unhandled"; break;
     }
-    // Somethng like [Error] string at ../main.cpp(1) caller_function_name
+    // Something like [Error] string at ../main.cpp(1) caller_function_name
     return wxString::Format("[%s] %s, at %s(%d) %s", logKind, msg, info.filename, info.line, info.func);
 }
