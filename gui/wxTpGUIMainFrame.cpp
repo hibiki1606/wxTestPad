@@ -1,10 +1,12 @@
 #include "wxTpGUIMainFrame.h"
 
 #include "../wxtestpad.h"
+#include "../utilities/TpLogFormatter.h"
 
 wxTpGUIMainFrame::wxTpGUIMainFrame(wxWindow* parent) : MainFrame(parent) {
     this->SetTitle(TP_PROJECT_NAME);
     this->SetStatusText("The app is ready !");
+    wxLogError("Aiueo");
 }
 
 void wxTpGUIMainFrame::MainFrameOnActivate(wxActivateEvent& event) {}
