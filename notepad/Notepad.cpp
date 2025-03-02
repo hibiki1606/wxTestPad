@@ -4,8 +4,6 @@
 
 #include "Notepad.h"
 
-#include "../wxtestpad.h"
-
 Notepad::Notepad(wxTextCtrl* textCtrl)
     : m_textCtrl(textCtrl),
       m_savedText(wxEmptyString),
