@@ -3,9 +3,9 @@
 #include "../wxtestpad.h"
 
 wxTpGUIMainFrame::wxTpGUIMainFrame(wxWindow* parent) : MainFrame(parent), m_notepad(m_textCtrl) {
-    m_notepad.SetNotifyIsSavedChanged([&](bool isSaved) {
+    m_notepad.SetNotifyIsSavedChanged([this](bool isSaved) {
         this->SetTitle(
-            wxString::Format("%s%s - %s", (m_notepad.GetIsSaved() ? "" : "*"), m_notepad.GetDocumentTitle(), TP_PROJECT_NAME)
+            wxString::Format("%s%s - %s", (isSaved ? "" : "*"), m_notepad.GetDocumentTitle(), TP_PROJECT_NAME)
         );
     });
     
