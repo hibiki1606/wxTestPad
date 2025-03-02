@@ -1,8 +1,8 @@
-#include "wxTpGUIMainFrame.h"
+#include "TpGUIMainFrame.h"
 
 #include "../wxtestpad.h"
 
-wxTpGUIMainFrame::wxTpGUIMainFrame(wxWindow* parent) : MainFrame(parent), m_notepad(m_textCtrl) {
+TpGUIMainFrame::TpGUIMainFrame(wxWindow* parent) : MainFrame(parent), m_notepad(m_textCtrl) {
     m_notepad.SetNotifyIsSavedChanged([this](bool isSaved) {
         this->SetTitle(
             wxString::Format("%s%s - %s", (isSaved ? "" : "*"), m_notepad.GetDocumentTitle(), TP_PROJECT_NAME)
@@ -13,7 +13,7 @@ wxTpGUIMainFrame::wxTpGUIMainFrame(wxWindow* parent) : MainFrame(parent), m_note
     this->SetStatusText("The app is ready !");
 }
 
-void wxTpGUIMainFrame::MainFrameOnClose(wxCloseEvent& event) {
+void TpGUIMainFrame::MainFrameOnClose(wxCloseEvent& event) {
     if (m_notepad.GetIsSaved()) {
         event.Skip();
         return;
@@ -42,7 +42,7 @@ void wxTpGUIMainFrame::MainFrameOnClose(wxCloseEvent& event) {
     return;
 }
 
-bool wxTpGUIMainFrame::OpenFile() {
+bool TpGUIMainFrame::OpenFile() {
     wxFileDialog openFileDialog(
         this, "Open text document", wxEmptyString, wxEmptyString,
         "Text documents (*.txt;*.text)|*.txt;*.text|All files (*.*)|*.*",
@@ -55,7 +55,7 @@ bool wxTpGUIMainFrame::OpenFile() {
     return m_notepad.Open(filePath);
 }
 
-bool wxTpGUIMainFrame::SaveFile() {
+bool TpGUIMainFrame::SaveFile() {
     wxFileDialog saveFileDialog(
         this, "Save text document", wxEmptyString, "document.txt",
         "Text documents (*.txt;*.text)|*.txt;*.text",
@@ -68,18 +68,18 @@ bool wxTpGUIMainFrame::SaveFile() {
     return m_notepad.Save(filePath);
 }
 
-void wxTpGUIMainFrame::m_menuItemOpenOnMenuSelection(wxCommandEvent& event) {
+void TpGUIMainFrame::m_menuItemOpenOnMenuSelection(wxCommandEvent& event) {
     OpenFile();
 }
 
-void wxTpGUIMainFrame::m_menuItemSaveAsOnMenuSelection(wxCommandEvent& event) {
+void TpGUIMainFrame::m_menuItemSaveAsOnMenuSelection(wxCommandEvent& event) {
     SaveFile();
 }
 
-void wxTpGUIMainFrame::m_menuItemExitOnMenuSelection(wxCommandEvent& event) {
+void TpGUIMainFrame::m_menuItemExitOnMenuSelection(wxCommandEvent& event) {
     this->Close();
 }
 
-void wxTpGUIMainFrame::m_menuItemAboutOnMenuSelection(wxCommandEvent& event) {
+void TpGUIMainFrame::m_menuItemAboutOnMenuSelection(wxCommandEvent& event) {
     this->SetTitle("You clicked the about button !");
 }

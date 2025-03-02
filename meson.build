@@ -8,8 +8,8 @@ wx_dep = dependency(
 )
 
 sources = files(
-  'gui/buildergen/wxTpGUI.cpp',
-  'gui/wxTpGUIMainFrame.cpp',
+  'gui/buildergen/TpGUI.cpp',
+  'gui/TpGUIMainFrame.cpp',
   'notepad/Notepad.cpp',
   'utilities/TpLogFormatter.cpp',
   'wxtestpad.cpp',

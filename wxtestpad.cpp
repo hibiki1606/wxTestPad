@@ -1,5 +1,5 @@
 #include "./wxtestpad.h"
-#include "./gui/wxTpGUIMainFrame.h"
+#include "./gui/TpGUIMainFrame.h"
 #include "./utilities/TpLogFormatter.h"
 
 class wxTestPadApp : public wxApp {
@@ -10,7 +10,7 @@ class wxTestPadApp : public wxApp {
         wxLog::GetActiveTarget()->SetFormatter(new TpLogFormatter);
 
         // Start application window
-        wxTpGUIMainFrame *frame = new wxTpGUIMainFrame(nullptr);
+        TpGUIMainFrame *frame = new TpGUIMainFrame(nullptr);
         frame->Show(true);
         
         return true;
