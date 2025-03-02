@@ -14,6 +14,11 @@ wxTpGUIMainFrame::wxTpGUIMainFrame(wxWindow* parent) : MainFrame(parent), m_note
 }
 
 void wxTpGUIMainFrame::MainFrameOnClose(wxCloseEvent& event) {
+    if (m_notepad.GetIsSaved()) {
+        event.Skip();
+        return;
+    }
+    
     bool continueClosing = [this]() {
         wxMessageDialog dialog(
             this, "You have unsaved changes,\nDo you want to save them before closing this app?",

@@ -7,7 +7,7 @@ Notepad::Notepad(wxTextCtrl* textCtrl)
     : m_textCtrl(textCtrl),
       m_savedText(wxEmptyString),
       m_documentTitle("Untitled"),
-      m_isSaved(false) {
+      m_isSaved(true) {
     m_textCtrl->Bind(wxEVT_TEXT, [&](wxCommandEvent&) {
         NotifyTextChanged();
     });
