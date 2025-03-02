@@ -12,6 +12,7 @@ sources = files(
   'utilities/TpLogFormatter.cpp',
   'gui/buildergen/wxTpGUI.cpp',
   'gui/wxTpGUIMainFrame.cpp',
+  'notepad/Notepad.cpp',
 )
 
 executable('wxTestPad', sources,

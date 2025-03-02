@@ -58,7 +58,6 @@ MainFrame::MainFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 	this->Centre( wxBOTH );
 
 	// Connect Events
-	this->Connect( wxEVT_ACTIVATE, wxActivateEventHandler( MainFrame::MainFrameOnActivate ) );
 	this->Connect( wxEVT_CLOSE_WINDOW, wxCloseEventHandler( MainFrame::MainFrameOnClose ) );
 	m_menu1->Bind(wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( MainFrame::m_menuItemOpenOnMenuSelection ), this, m_menuItemOpen->GetId());
 	m_menu1->Bind(wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( MainFrame::m_menuItemSaveAsOnMenuSelection ), this, m_menuItemSaveAs->GetId());
