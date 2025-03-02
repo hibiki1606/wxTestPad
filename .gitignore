@@ -4,3 +4,4 @@ builddir/
 
 # debug files
 document.txt
+*.debug
