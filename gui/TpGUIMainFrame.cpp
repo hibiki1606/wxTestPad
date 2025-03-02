@@ -68,18 +68,18 @@ bool TpGUIMainFrame::SaveFile() {
     return m_notepad.Save(filePath);
 }
 
-void TpGUIMainFrame::m_menuItemOpenOnMenuSelection(wxCommandEvent& event) {
+void TpGUIMainFrame::m_menuItemOpenOnMenuSelection(wxCommandEvent& WXUNUSED(event)) {
     OpenFile();
 }
 
-void TpGUIMainFrame::m_menuItemSaveAsOnMenuSelection(wxCommandEvent& event) {
+void TpGUIMainFrame::m_menuItemSaveAsOnMenuSelection(wxCommandEvent& WXUNUSED(event)) {
     SaveFile();
 }
 
-void TpGUIMainFrame::m_menuItemExitOnMenuSelection(wxCommandEvent& event) {
+void TpGUIMainFrame::m_menuItemExitOnMenuSelection(wxCommandEvent& WXUNUSED(event)) {
     this->Close();
 }
 
-void TpGUIMainFrame::m_menuItemAboutOnMenuSelection(wxCommandEvent& event) {
+void TpGUIMainFrame::m_menuItemAboutOnMenuSelection(wxCommandEvent& WXUNUSED(event)) {
     this->SetTitle("You clicked the about button !");
 }
