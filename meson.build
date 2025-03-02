@@ -8,11 +8,11 @@ wx_dep = dependency(
 )
 
 sources = files(
-  'wxtestpad.cpp',
-  'utilities/TpLogFormatter.cpp',
   'gui/buildergen/wxTpGUI.cpp',
   'gui/wxTpGUIMainFrame.cpp',
   'notepad/Notepad.cpp',
+  'utilities/TpLogFormatter.cpp',
+  'wxtestpad.cpp',
 )
 
 executable('wxTestPad', sources,
