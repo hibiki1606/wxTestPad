@@ -1,6 +1,6 @@
 #include "TpGUIMainFrame.h"
 
-#include "../wxtestpad.h"
+#include "wxtestpad.h"
 
 TpGUIMainFrame::TpGUIMainFrame(wxWindow* parent) : MainFrame(parent), m_notepad(m_textCtrl) {
     m_notepad.SetNotifyIsSavedChanged([this](bool isSaved) {

@@ -1,4 +1,7 @@
 #include <wx/sstream.h>
+#include <wx/txtstrm.h>
+#include <wx/wfstream.h>
+
 #include "Notepad.h"
 
 #include "../wxtestpad.h"
