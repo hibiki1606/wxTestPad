@@ -18,7 +18,7 @@ pacman -Syu
 pacman -S meson wxgtk3
 ```
 
-> Install libraries in MSYS2 on Windows (It depends on your environment!)
+> Install libraries in MSYS2 (ucrt64) on Windows (It depends on your MSYS2 environment!)
 ```console
 pacman -Syu
 pacman -S mingw-w64-ucrt-x86_64-meson mingw-w64-ucrt-x86_64-wxwidgets3.2-msw
