@@ -4,7 +4,7 @@ A test program written in C++ with wxWidgets x Meson build system
 
 This project should be work on Windows, Linux, and hopefully MacOS
 
-## Building
+## Building (GCC on Arch Linux or MSYS2 ucrt64)
 
 You need a C++ compiler, Meson and at least version 3 of wxWidgets
 
@@ -34,8 +34,3 @@ meson compile -C builddir
 ```console
 ./builddir/wxTestPad
 ```
-
-> [!NOTE]
-> Because Windows builds without MSVC are a bit tricky to me, Visual Styles for Windows builds is not supported for now.
-> 
-> It is possible to do, but it's not really handy as far as I know, so I haven't done it yet.
