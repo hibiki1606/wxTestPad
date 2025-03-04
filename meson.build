@@ -4,7 +4,7 @@ project('wxTestPad', 'cpp',
 )
 
 wx_dep = dependency(
-  'wxwidgets', version : '>=3.0.0',
+  'wxwidgets', version : '>=3.0.0', modules : ['ribbon', 'core', 'base']
 )
 
 sources = files(

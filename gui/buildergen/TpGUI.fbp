@@ -47,10 +47,10 @@
       <property name="hidden">0</property>
       <property name="id">wxID_ANY</property>
       <property name="maximum_size"></property>
-      <property name="minimum_size"></property>
+      <property name="minimum_size">500,400</property>
       <property name="name">MainFrame</property>
       <property name="pos"></property>
-      <property name="size">500,300</property>
+      <property name="size">900,600</property>
       <property name="style">wxDEFAULT_FRAME_STYLE</property>
       <property name="subclass">; ; forward_declare</property>
       <property name="title">wxTpGUI</property>
@@ -61,112 +61,6 @@
       <property name="window_style">wxTAB_TRAVERSAL</property>
       <property name="xrc_skip_sizer">1</property>
       <event name="OnClose">MainFrameOnClose</event>
-      <object class="wxMenuBar" expanded="true">
-        <property name="bg"></property>
-        <property name="context_help"></property>
-        <property name="context_menu">1</property>
-        <property name="drag_accept_files">0</property>
-        <property name="enabled">1</property>
-        <property name="fg"></property>
-        <property name="font"></property>
-        <property name="hidden">0</property>
-        <property name="id">wxID_ANY</property>
-        <property name="maximum_size"></property>
-        <property name="minimum_size"></property>
-        <property name="name">m_menubar1</property>
-        <property name="permission">protected</property>
-        <property name="pos"></property>
-        <property name="size"></property>
-        <property name="style"></property>
-        <property name="subclass">; ; forward_declare</property>
-        <property name="tooltip"></property>
-        <property name="window_extra_style"></property>
-        <property name="window_name"></property>
-        <property name="window_style"></property>
-        <object class="wxMenu" expanded="true">
-          <property name="label">File</property>
-          <property name="name">m_menu1</property>
-          <property name="permission">protected</property>
-          <object class="wxMenuItem" expanded="false">
-            <property name="bitmap"></property>
-            <property name="checked">0</property>
-            <property name="enabled">1</property>
-            <property name="help"></property>
-            <property name="id">wxID_ANY</property>
-            <property name="kind">wxITEM_NORMAL</property>
-            <property name="label">Open...</property>
-            <property name="name">m_menuItemOpen</property>
-            <property name="permission">none</property>
-            <property name="shortcut"></property>
-            <property name="unchecked_bitmap"></property>
-            <event name="OnMenuSelection">m_menuItemOpenOnMenuSelection</event>
-          </object>
-          <object class="wxMenuItem" expanded="false">
-            <property name="bitmap"></property>
-            <property name="checked">0</property>
-            <property name="enabled">1</property>
-            <property name="help"></property>
-            <property name="id">wxID_ANY</property>
-            <property name="kind">wxITEM_NORMAL</property>
-            <property name="label">Save</property>
-            <property name="name">m_menuItemSave</property>
-            <property name="permission">none</property>
-            <property name="shortcut"></property>
-            <property name="unchecked_bitmap"></property>
-          </object>
-          <object class="wxMenuItem" expanded="false">
-            <property name="bitmap"></property>
-            <property name="checked">0</property>
-            <property name="enabled">1</property>
-            <property name="help"></property>
-            <property name="id">wxID_ANY</property>
-            <property name="kind">wxITEM_NORMAL</property>
-            <property name="label">Save as...</property>
-            <property name="name">m_menuItemSaveAs</property>
-            <property name="permission">none</property>
-            <property name="shortcut"></property>
-            <property name="unchecked_bitmap"></property>
-            <event name="OnMenuSelection">m_menuItemSaveAsOnMenuSelection</event>
-          </object>
-          <object class="separator" expanded="false">
-            <property name="name">m_separator1</property>
-            <property name="permission">none</property>
-          </object>
-          <object class="wxMenuItem" expanded="false">
-            <property name="bitmap"></property>
-            <property name="checked">0</property>
-            <property name="enabled">1</property>
-            <property name="help"></property>
-            <property name="id">wxID_ANY</property>
-            <property name="kind">wxITEM_NORMAL</property>
-            <property name="label">Exit</property>
-            <property name="name">m_menuItemExit</property>
-            <property name="permission">none</property>
-            <property name="shortcut"></property>
-            <property name="unchecked_bitmap"></property>
-            <event name="OnMenuSelection">m_menuItemExitOnMenuSelection</event>
-          </object>
-        </object>
-        <object class="wxMenu" expanded="false">
-          <property name="label">Help</property>
-          <property name="name">m_menu2</property>
-          <property name="permission">protected</property>
-          <object class="wxMenuItem" expanded="false">
-            <property name="bitmap"></property>
-            <property name="checked">0</property>
-            <property name="enabled">1</property>
-            <property name="help"></property>
-            <property name="id">wxID_ANY</property>
-            <property name="kind">wxITEM_NORMAL</property>
-            <property name="label">About</property>
-            <property name="name">m_menuItemAbout</property>
-            <property name="permission">none</property>
-            <property name="shortcut"></property>
-            <property name="unchecked_bitmap"></property>
-            <event name="OnMenuSelection">m_menuItemAboutOnMenuSelection</event>
-          </object>
-        </object>
-      </object>
       <object class="wxBoxSizer" expanded="true">
         <property name="minimum_size"></property>
         <property name="name">bSizer1</property>
@@ -175,8 +69,409 @@
         <object class="sizeritem" expanded="true">
           <property name="border">0</property>
           <property name="flag">wxALL|wxEXPAND</property>
+          <property name="proportion">0</property>
+          <object class="wxRibbonBar" expanded="true">
+            <property name="BottomDockable">1</property>
+            <property name="LeftDockable">1</property>
+            <property name="RightDockable">1</property>
+            <property name="TopDockable">1</property>
+            <property name="aui_layer">0</property>
+            <property name="aui_name"></property>
+            <property name="aui_position">0</property>
+            <property name="aui_row">0</property>
+            <property name="best_size"></property>
+            <property name="bg"></property>
+            <property name="caption"></property>
+            <property name="caption_visible">1</property>
+            <property name="center_pane">0</property>
+            <property name="close_button">1</property>
+            <property name="context_help"></property>
+            <property name="context_menu">1</property>
+            <property name="default_pane">0</property>
+            <property name="dock">Dock</property>
+            <property name="dock_fixed">0</property>
+            <property name="docking">Left</property>
+            <property name="drag_accept_files">0</property>
+            <property name="enabled">1</property>
+            <property name="fg"></property>
+            <property name="floatable">1</property>
+            <property name="font"></property>
+            <property name="gripper">0</property>
+            <property name="hidden">0</property>
+            <property name="id">wxID_ANY</property>
+            <property name="max_size"></property>
+            <property name="maximize_button">0</property>
+            <property name="maximum_size"></property>
+            <property name="min_size"></property>
+            <property name="minimize_button">0</property>
+            <property name="minimum_size"></property>
+            <property name="moveable">1</property>
+            <property name="name">m_ribbonBar</property>
+            <property name="pane_border">1</property>
+            <property name="pane_position"></property>
+            <property name="pane_size"></property>
+            <property name="permission">protected</property>
+            <property name="pin_button">1</property>
+            <property name="pos"></property>
+            <property name="resize">Resizable</property>
+            <property name="show">1</property>
+            <property name="size"></property>
+            <property name="style">wxRIBBON_BAR_DEFAULT_STYLE</property>
+            <property name="subclass">; ; forward_declare</property>
+            <property name="theme">MSW</property>
+            <property name="toolbar_pane">0</property>
+            <property name="tooltip"></property>
+            <property name="window_extra_style"></property>
+            <property name="window_name"></property>
+            <property name="window_style"></property>
+            <object class="wxRibbonPage" expanded="true">
+              <property name="bg"></property>
+              <property name="bitmap"></property>
+              <property name="context_help"></property>
+              <property name="context_menu">1</property>
+              <property name="drag_accept_files">0</property>
+              <property name="enabled">1</property>
+              <property name="fg"></property>
+              <property name="font"></property>
+              <property name="hidden">0</property>
+              <property name="id">wxID_ANY</property>
+              <property name="label">TestPad</property>
+              <property name="maximum_size"></property>
+              <property name="minimum_size"></property>
+              <property name="name">m_ribbonPageTestPad</property>
+              <property name="permission">protected</property>
+              <property name="pos"></property>
+              <property name="select">1</property>
+              <property name="size"></property>
+              <property name="subclass">; ; forward_declare</property>
+              <property name="tooltip"></property>
+              <property name="window_extra_style"></property>
+              <property name="window_name"></property>
+              <property name="window_style"></property>
+              <object class="wxRibbonPanel" expanded="true">
+                <property name="bg"></property>
+                <property name="bitmap"></property>
+                <property name="context_help"></property>
+                <property name="context_menu">1</property>
+                <property name="drag_accept_files">0</property>
+                <property name="enabled">1</property>
+                <property name="fg"></property>
+                <property name="font"></property>
+                <property name="hidden">0</property>
+                <property name="id">wxID_ANY</property>
+                <property name="label">File</property>
+                <property name="maximum_size"></property>
+                <property name="minimum_size"></property>
+                <property name="name">m_ribbonPanelFile</property>
+                <property name="permission">protected</property>
+                <property name="pos"></property>
+                <property name="size"></property>
+                <property name="style">wxRIBBON_PANEL_DEFAULT_STYLE</property>
+                <property name="subclass">; ; forward_declare</property>
+                <property name="tooltip"></property>
+                <property name="window_extra_style"></property>
+                <property name="window_name"></property>
+                <property name="window_style"></property>
+                <object class="wxRibbonButtonBar" expanded="true">
+                  <property name="bg"></property>
+                  <property name="context_help"></property>
+                  <property name="context_menu">1</property>
+                  <property name="drag_accept_files">0</property>
+                  <property name="enabled">1</property>
+                  <property name="fg"></property>
+                  <property name="font"></property>
+                  <property name="hidden">0</property>
+                  <property name="id">wxID_ANY</property>
+                  <property name="maximum_size"></property>
+                  <property name="minimum_size"></property>
+                  <property name="name">m_ribbonButtonBar7</property>
+                  <property name="permission">protected</property>
+                  <property name="pos"></property>
+                  <property name="size"></property>
+                  <property name="subclass">; ; forward_declare</property>
+                  <property name="tooltip"></property>
+                  <property name="window_extra_style"></property>
+                  <property name="window_name"></property>
+                  <property name="window_style"></property>
+                  <object class="ribbonButton" expanded="true">
+                    <property name="bitmap">Load From Embedded File; res/file.bmp</property>
+                    <property name="help">Open a file...</property>
+                    <property name="id">TP_RIBBON_OPEN</property>
+                    <property name="label">Open...</property>
+                    <property name="permission">protected</property>
+                    <event name="OnRibbonButtonClicked">m_ribbonOnClick</event>
+                  </object>
+                  <object class="ribbonButton" expanded="true">
+                    <property name="bitmap">Load From Embedded File; res/save.bmp</property>
+                    <property name="help">Save the text into a file</property>
+                    <property name="id">TP_RIBBON_SAVEAS</property>
+                    <property name="label">Save as...</property>
+                    <property name="permission">protected</property>
+                    <event name="OnRibbonButtonClicked">m_ribbonOnClick</event>
+                  </object>
+                </object>
+              </object>
+              <object class="wxRibbonPanel" expanded="true">
+                <property name="bg"></property>
+                <property name="bitmap"></property>
+                <property name="context_help"></property>
+                <property name="context_menu">1</property>
+                <property name="drag_accept_files">0</property>
+                <property name="enabled">1</property>
+                <property name="fg"></property>
+                <property name="font"></property>
+                <property name="hidden">0</property>
+                <property name="id">wxID_ANY</property>
+                <property name="label">Clipboard</property>
+                <property name="maximum_size"></property>
+                <property name="minimum_size"></property>
+                <property name="name">m_ribbonPanelClipboard</property>
+                <property name="permission">protected</property>
+                <property name="pos"></property>
+                <property name="size"></property>
+                <property name="style">wxRIBBON_PANEL_DEFAULT_STYLE</property>
+                <property name="subclass">; ; forward_declare</property>
+                <property name="tooltip"></property>
+                <property name="window_extra_style"></property>
+                <property name="window_name"></property>
+                <property name="window_style"></property>
+                <object class="wxRibbonButtonBar" expanded="true">
+                  <property name="bg"></property>
+                  <property name="context_help"></property>
+                  <property name="context_menu">1</property>
+                  <property name="drag_accept_files">0</property>
+                  <property name="enabled">1</property>
+                  <property name="fg"></property>
+                  <property name="font"></property>
+                  <property name="hidden">0</property>
+                  <property name="id">wxID_ANY</property>
+                  <property name="maximum_size"></property>
+                  <property name="minimum_size"></property>
+                  <property name="name">m_ribbonButtonBar5</property>
+                  <property name="permission">protected</property>
+                  <property name="pos"></property>
+                  <property name="size"></property>
+                  <property name="subclass">; ; forward_declare</property>
+                  <property name="tooltip"></property>
+                  <property name="window_extra_style"></property>
+                  <property name="window_name"></property>
+                  <property name="window_style"></property>
+                  <object class="ribbonButton" expanded="false">
+                    <property name="bitmap">Load From Embedded File; res/copy.bmp</property>
+                    <property name="help">Copy the selected text into the clipboard</property>
+                    <property name="id">TP_RIBBON_COPY</property>
+                    <property name="label">Copy</property>
+                    <property name="permission">protected</property>
+                    <event name="OnRibbonButtonClicked">m_ribbonOnClick</event>
+                  </object>
+                  <object class="ribbonButton" expanded="false">
+                    <property name="bitmap">Load From Embedded File; res/paste.bmp</property>
+                    <property name="help">Paste text from the clipboard</property>
+                    <property name="id">TP_RIBBON_PASTE</property>
+                    <property name="label">Paste</property>
+                    <property name="permission">protected</property>
+                    <event name="OnRibbonButtonClicked">m_ribbonOnClick</event>
+                  </object>
+                </object>
+              </object>
+              <object class="wxRibbonPanel" expanded="false">
+                <property name="bg"></property>
+                <property name="bitmap"></property>
+                <property name="context_help"></property>
+                <property name="context_menu">1</property>
+                <property name="drag_accept_files">0</property>
+                <property name="enabled">1</property>
+                <property name="fg"></property>
+                <property name="font"></property>
+                <property name="hidden">0</property>
+                <property name="id">wxID_ANY</property>
+                <property name="label">Text</property>
+                <property name="maximum_size"></property>
+                <property name="minimum_size"></property>
+                <property name="name">m_ribbonPanelText</property>
+                <property name="permission">protected</property>
+                <property name="pos"></property>
+                <property name="size"></property>
+                <property name="style">wxRIBBON_PANEL_DEFAULT_STYLE</property>
+                <property name="subclass">; ; forward_declare</property>
+                <property name="tooltip"></property>
+                <property name="window_extra_style"></property>
+                <property name="window_name"></property>
+                <property name="window_style"></property>
+                <object class="wxRibbonButtonBar" expanded="false">
+                  <property name="bg"></property>
+                  <property name="context_help"></property>
+                  <property name="context_menu">1</property>
+                  <property name="drag_accept_files">0</property>
+                  <property name="enabled">1</property>
+                  <property name="fg"></property>
+                  <property name="font"></property>
+                  <property name="hidden">0</property>
+                  <property name="id">wxID_ANY</property>
+                  <property name="maximum_size"></property>
+                  <property name="minimum_size"></property>
+                  <property name="name">m_ribbonButtonBar9</property>
+                  <property name="permission">protected</property>
+                  <property name="pos"></property>
+                  <property name="size"></property>
+                  <property name="subclass">; ; forward_declare</property>
+                  <property name="tooltip"></property>
+                  <property name="window_extra_style"></property>
+                  <property name="window_name"></property>
+                  <property name="window_style"></property>
+                  <object class="ribbonButton" expanded="false">
+                    <property name="bitmap">Load From Embedded File; res/font.bmp</property>
+                    <property name="help">Change font</property>
+                    <property name="id">TP_RIBBON_FONT</property>
+                    <property name="label">Font</property>
+                    <property name="permission">protected</property>
+                    <event name="OnRibbonButtonClicked">m_ribbonOnClick</event>
+                  </object>
+                </object>
+              </object>
+              <object class="wxRibbonPanel" expanded="false">
+                <property name="bg"></property>
+                <property name="bitmap"></property>
+                <property name="context_help"></property>
+                <property name="context_menu">1</property>
+                <property name="drag_accept_files">0</property>
+                <property name="enabled">1</property>
+                <property name="fg"></property>
+                <property name="font"></property>
+                <property name="hidden">0</property>
+                <property name="id">wxID_ANY</property>
+                <property name="label">Appearance</property>
+                <property name="maximum_size"></property>
+                <property name="minimum_size"></property>
+                <property name="name">m_ribbonPanelAppearance</property>
+                <property name="permission">protected</property>
+                <property name="pos"></property>
+                <property name="size"></property>
+                <property name="style">wxRIBBON_PANEL_DEFAULT_STYLE</property>
+                <property name="subclass">; ; forward_declare</property>
+                <property name="tooltip"></property>
+                <property name="window_extra_style"></property>
+                <property name="window_name"></property>
+                <property name="window_style"></property>
+                <object class="wxRibbonButtonBar" expanded="false">
+                  <property name="bg"></property>
+                  <property name="context_help"></property>
+                  <property name="context_menu">1</property>
+                  <property name="drag_accept_files">0</property>
+                  <property name="enabled">1</property>
+                  <property name="fg"></property>
+                  <property name="font"></property>
+                  <property name="hidden">0</property>
+                  <property name="id">wxID_ANY</property>
+                  <property name="maximum_size"></property>
+                  <property name="minimum_size"></property>
+                  <property name="name">m_ribbonButtonBar51</property>
+                  <property name="permission">protected</property>
+                  <property name="pos"></property>
+                  <property name="size"></property>
+                  <property name="subclass">; ; forward_declare</property>
+                  <property name="tooltip"></property>
+                  <property name="window_extra_style"></property>
+                  <property name="window_name"></property>
+                  <property name="window_style"></property>
+                  <object class="ribbonToggleButton" expanded="false">
+                    <property name="bitmap">Load From Embedded File; res/switch.bmp</property>
+                    <property name="help">Toggle the theme</property>
+                    <property name="id">TP_RIBBON_THEME</property>
+                    <property name="label">Classic</property>
+                    <property name="permission">protected</property>
+                    <event name="OnRibbonButtonClicked">m_ribbonToggleTheme</event>
+                  </object>
+                </object>
+              </object>
+            </object>
+            <object class="wxRibbonPage" expanded="false">
+              <property name="bg"></property>
+              <property name="bitmap"></property>
+              <property name="context_help"></property>
+              <property name="context_menu">1</property>
+              <property name="drag_accept_files">0</property>
+              <property name="enabled">1</property>
+              <property name="fg"></property>
+              <property name="font"></property>
+              <property name="hidden">0</property>
+              <property name="id">wxID_ANY</property>
+              <property name="label">Help</property>
+              <property name="maximum_size"></property>
+              <property name="minimum_size"></property>
+              <property name="name">m_ribbonPageHelp</property>
+              <property name="permission">protected</property>
+              <property name="pos"></property>
+              <property name="select">0</property>
+              <property name="size"></property>
+              <property name="subclass">; ; forward_declare</property>
+              <property name="tooltip"></property>
+              <property name="window_extra_style"></property>
+              <property name="window_name"></property>
+              <property name="window_style"></property>
+              <object class="wxRibbonPanel" expanded="false">
+                <property name="bg"></property>
+                <property name="bitmap"></property>
+                <property name="context_help"></property>
+                <property name="context_menu">1</property>
+                <property name="drag_accept_files">0</property>
+                <property name="enabled">1</property>
+                <property name="fg"></property>
+                <property name="font"></property>
+                <property name="hidden">0</property>
+                <property name="id">wxID_ANY</property>
+                <property name="label">About</property>
+                <property name="maximum_size"></property>
+                <property name="minimum_size"></property>
+                <property name="name">m_ribbonPanelAbout</property>
+                <property name="permission">protected</property>
+                <property name="pos"></property>
+                <property name="size"></property>
+                <property name="style">wxRIBBON_PANEL_DEFAULT_STYLE</property>
+                <property name="subclass">; ; forward_declare</property>
+                <property name="tooltip"></property>
+                <property name="window_extra_style"></property>
+                <property name="window_name"></property>
+                <property name="window_style"></property>
+                <object class="wxRibbonButtonBar" expanded="false">
+                  <property name="bg"></property>
+                  <property name="context_help"></property>
+                  <property name="context_menu">1</property>
+                  <property name="drag_accept_files">0</property>
+                  <property name="enabled">1</property>
+                  <property name="fg"></property>
+                  <property name="font"></property>
+                  <property name="hidden">0</property>
+                  <property name="id">wxID_ANY</property>
+                  <property name="maximum_size"></property>
+                  <property name="minimum_size"></property>
+                  <property name="name">m_ribbonButtonBar8</property>
+                  <property name="permission">protected</property>
+                  <property name="pos"></property>
+                  <property name="size"></property>
+                  <property name="subclass">; ; forward_declare</property>
+                  <property name="tooltip"></property>
+                  <property name="window_extra_style"></property>
+                  <property name="window_name"></property>
+                  <property name="window_style"></property>
+                  <object class="ribbonButton" expanded="false">
+                    <property name="bitmap">Load From Embedded File; res/question.bmp</property>
+                    <property name="help">About this app</property>
+                    <property name="id">TP_RIBBON_ABOUT</property>
+                    <property name="label">About</property>
+                    <property name="permission">protected</property>
+                    <event name="OnRibbonButtonClicked">m_ribbonOnClick</event>
+                  </object>
+                </object>
+              </object>
+            </object>
+          </object>
+        </object>
+        <object class="sizeritem" expanded="false">
+          <property name="border">0</property>
+          <property name="flag">wxALL|wxEXPAND</property>
           <property name="proportion">1</property>
-          <object class="wxTextCtrl" expanded="true">
+          <object class="wxTextCtrl" expanded="false">
             <property name="BottomDockable">1</property>
             <property name="LeftDockable">1</property>
             <property name="RightDockable">1</property>

@@ -1,3 +1,6 @@
+#include <wx/aboutdlg.h>
+#include <wx/fontdlg.h>
+
 #include "TpGUIMainFrame.h"
 
 #include "wxtestpad.h"
@@ -68,18 +71,70 @@ bool TpGUIMainFrame::SaveFile() {
     return m_notepad.Save(filePath);
 }
 
-void TpGUIMainFrame::m_menuItemOpenOnMenuSelection(wxCommandEvent& WXUNUSED(event)) {
-    OpenFile();
+bool TpGUIMainFrame::FontDialog() {
+    wxFontData data;
+    data.SetInitialFont(m_textCtrl->GetFont());
+
+    wxFontDialog dialog(this, data);
+    if (dialog.ShowModal() != wxID_OK) return false;
+    
+    wxFontData result = dialog.GetFontData();
+    this->m_textCtrl->SetFont(result.GetChosenFont());
+
+    return true;
 }
 
-void TpGUIMainFrame::m_menuItemSaveAsOnMenuSelection(wxCommandEvent& WXUNUSED(event)) {
-    SaveFile();
+void TpGUIMainFrame::m_ribbonOnClick(wxRibbonButtonBarEvent& event) {
+    // ribbonButton events should be handled here
+    // Enum of ribbonButton ID should be like, TP_RIBBON_{NAME}
+    int ribbonControlId = event.GetId();
+    wxLogDebug("Ribbon click: %d", ribbonControlId);
+    
+    switch (ribbonControlId) {
+        case TP_RIBBON_OPEN: {
+            OpenFile();
+            break;
+        }
+        case TP_RIBBON_SAVEAS: {
+            SaveFile();
+            break;
+        }
+        case TP_RIBBON_COPY: {
+            break;
+        }
+        case TP_RIBBON_PASTE: {
+            break;
+        }
+        case TP_RIBBON_FONT: {
+            FontDialog();
+            break;
+        }
+        case TP_RIBBON_ABOUT: {
+            wxAboutDialogInfo info;
+            info.SetName(TP_PROJECT_NAME);
+            info.SetVersion("0.1 Dev");
+            wxAboutBox(info);
+            break;
+        }
+        default: {
+            wxLogError("Unexpected value: %d", ribbonControlId);
+            break;
+        }
+    }
 }
 
-void TpGUIMainFrame::m_menuItemExitOnMenuSelection(wxCommandEvent& WXUNUSED(event)) {
-    this->Close();
-}
+void TpGUIMainFrame::m_ribbonToggleTheme(wxCommandEvent& event) {
+    // Too unstable to use
+    // This function shouldn't be used
+    int isClassic = event.IsChecked();
+    wxRibbonArtProvider* provider;
 
-void TpGUIMainFrame::m_menuItemAboutOnMenuSelection(wxCommandEvent& WXUNUSED(event)) {
-    this->SetTitle("You clicked the about button !");
+    if (isClassic)    
+        provider = new wxRibbonAUIArtProvider();
+    else
+        provider = new wxRibbonMSWArtProvider();
+    
+    // This also deletes old pointer of provider
+    m_ribbonBar->SetArtProvider(provider);
+    m_ribbonBar->Refresh();
 }

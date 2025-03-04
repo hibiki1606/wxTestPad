@@ -13,11 +13,10 @@ class TpGUIMainFrame : public MainFrame {
 
     bool OpenFile();
     bool SaveFile();
+    bool FontDialog();
 
-    void m_menuItemOpenOnMenuSelection(wxCommandEvent& event);
-    void m_menuItemSaveAsOnMenuSelection(wxCommandEvent& event);
-    void m_menuItemExitOnMenuSelection(wxCommandEvent& event);
-    void m_menuItemAboutOnMenuSelection(wxCommandEvent& event);
+    void m_ribbonOnClick(wxRibbonButtonBarEvent& event);
+    void m_ribbonToggleTheme(wxCommandEvent& event);
 
    public:
     TpGUIMainFrame(wxWindow* parent);

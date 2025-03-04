@@ -7,45 +7,48 @@
 
 #include "TpGUI.h"
 
+#include "res/copy.bmp.h"
+#include "res/file.bmp.h"
+#include "res/font.bmp.h"
+#include "res/paste.bmp.h"
+#include "res/question.bmp.h"
+#include "res/save.bmp.h"
+#include "res/switch.bmp.h"
+
 ///////////////////////////////////////////////////////////////////////////
 
 MainFrame::MainFrame( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxFrame( parent, id, title, pos, size, style )
 {
-	this->SetSizeHints( wxDefaultSize, wxDefaultSize );
-
-	m_menubar1 = new wxMenuBar( 0 );
-	m_menu1 = new wxMenu();
-	wxMenuItem* m_menuItemOpen;
-	m_menuItemOpen = new wxMenuItem( m_menu1, wxID_ANY, wxString( _("Open...") ) , wxEmptyString, wxITEM_NORMAL );
-	m_menu1->Append( m_menuItemOpen );
-
-	wxMenuItem* m_menuItemSave;
-	m_menuItemSave = new wxMenuItem( m_menu1, wxID_ANY, wxString( _("Save") ) , wxEmptyString, wxITEM_NORMAL );
-	m_menu1->Append( m_menuItemSave );
-
-	wxMenuItem* m_menuItemSaveAs;
-	m_menuItemSaveAs = new wxMenuItem( m_menu1, wxID_ANY, wxString( _("Save as...") ) , wxEmptyString, wxITEM_NORMAL );
-	m_menu1->Append( m_menuItemSaveAs );
-
-	m_menu1->AppendSeparator();
-
-	wxMenuItem* m_menuItemExit;
-	m_menuItemExit = new wxMenuItem( m_menu1, wxID_ANY, wxString( _("Exit") ) , wxEmptyString, wxITEM_NORMAL );
-	m_menu1->Append( m_menuItemExit );
-
-	m_menubar1->Append( m_menu1, _("File") );
-
-	m_menu2 = new wxMenu();
-	wxMenuItem* m_menuItemAbout;
-	m_menuItemAbout = new wxMenuItem( m_menu2, wxID_ANY, wxString( _("About") ) , wxEmptyString, wxITEM_NORMAL );
-	m_menu2->Append( m_menuItemAbout );
-
-	m_menubar1->Append( m_menu2, _("Help") );
-
-	this->SetMenuBar( m_menubar1 );
+	this->SetSizeHints( wxSize( 500,400 ), wxDefaultSize );
 
 	wxBoxSizer* bSizer1;
 	bSizer1 = new wxBoxSizer( wxVERTICAL );
+
+	m_ribbonBar = new wxRibbonBar( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxRIBBON_BAR_DEFAULT_STYLE );
+	m_ribbonBar->SetArtProvider(new wxRibbonMSWArtProvider);
+	m_ribbonPageTestPad = new wxRibbonPage( m_ribbonBar, wxID_ANY, _("TestPad") , wxNullBitmap , 0 );
+	m_ribbonBar->SetActivePage( m_ribbonPageTestPad );
+	m_ribbonPanelFile = new wxRibbonPanel( m_ribbonPageTestPad, wxID_ANY, _("File") , wxNullBitmap , wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_DEFAULT_STYLE );
+	m_ribbonButtonBar7 = new wxRibbonButtonBar( m_ribbonPanelFile, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0 );
+	m_ribbonButtonBar7->AddButton( TP_RIBBON_OPEN, _("Open..."), file_bmp_to_wx_bitmap(), _("Open a file..."));
+	m_ribbonButtonBar7->AddButton( TP_RIBBON_SAVEAS, _("Save as..."), save_bmp_to_wx_bitmap(), _("Save the text into a file"));
+	m_ribbonPanelClipboard = new wxRibbonPanel( m_ribbonPageTestPad, wxID_ANY, _("Clipboard") , wxNullBitmap , wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_DEFAULT_STYLE );
+	m_ribbonButtonBar5 = new wxRibbonButtonBar( m_ribbonPanelClipboard, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0 );
+	m_ribbonButtonBar5->AddButton( TP_RIBBON_COPY, _("Copy"), copy_bmp_to_wx_bitmap(), _("Copy the selected text into the clipboard"));
+	m_ribbonButtonBar5->AddButton( TP_RIBBON_PASTE, _("Paste"), paste_bmp_to_wx_bitmap(), _("Paste text from the clipboard"));
+	m_ribbonPanelText = new wxRibbonPanel( m_ribbonPageTestPad, wxID_ANY, _("Text") , wxNullBitmap , wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_DEFAULT_STYLE );
+	m_ribbonButtonBar9 = new wxRibbonButtonBar( m_ribbonPanelText, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0 );
+	m_ribbonButtonBar9->AddButton( TP_RIBBON_FONT, _("Font"), font_bmp_to_wx_bitmap(), _("Change font"));
+	m_ribbonPanelAppearance = new wxRibbonPanel( m_ribbonPageTestPad, wxID_ANY, _("Appearance") , wxNullBitmap , wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_DEFAULT_STYLE );
+	m_ribbonButtonBar51 = new wxRibbonButtonBar( m_ribbonPanelAppearance, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0 );
+	m_ribbonButtonBar51->AddToggleButton( TP_RIBBON_THEME, _("Classic"), switch_bmp_to_wx_bitmap(), _("Toggle the theme"));
+	m_ribbonPageHelp = new wxRibbonPage( m_ribbonBar, wxID_ANY, _("Help") , wxNullBitmap , 0 );
+	m_ribbonPanelAbout = new wxRibbonPanel( m_ribbonPageHelp, wxID_ANY, _("About") , wxNullBitmap , wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_DEFAULT_STYLE );
+	m_ribbonButtonBar8 = new wxRibbonButtonBar( m_ribbonPanelAbout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0 );
+	m_ribbonButtonBar8->AddButton( TP_RIBBON_ABOUT, _("About"), question_bmp_to_wx_bitmap(), _("About this app"));
+	m_ribbonBar->Realize();
+
+	bSizer1->Add( m_ribbonBar, 0, wxALL|wxEXPAND, 0 );
 
 	m_textCtrl = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE );
 	bSizer1->Add( m_textCtrl, 1, wxALL|wxEXPAND, 0 );
@@ -59,10 +62,13 @@ MainFrame::MainFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 
 	// Connect Events
 	this->Connect( wxEVT_CLOSE_WINDOW, wxCloseEventHandler( MainFrame::MainFrameOnClose ) );
-	m_menu1->Bind(wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( MainFrame::m_menuItemOpenOnMenuSelection ), this, m_menuItemOpen->GetId());
-	m_menu1->Bind(wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( MainFrame::m_menuItemSaveAsOnMenuSelection ), this, m_menuItemSaveAs->GetId());
-	m_menu1->Bind(wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( MainFrame::m_menuItemExitOnMenuSelection ), this, m_menuItemExit->GetId());
-	m_menu2->Bind(wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( MainFrame::m_menuItemAboutOnMenuSelection ), this, m_menuItemAbout->GetId());
+	this->Connect( TP_RIBBON_OPEN, wxEVT_COMMAND_RIBBONBUTTON_CLICKED, wxRibbonButtonBarEventHandler( MainFrame::m_ribbonOnClick ) );
+	this->Connect( TP_RIBBON_SAVEAS, wxEVT_COMMAND_RIBBONBUTTON_CLICKED, wxRibbonButtonBarEventHandler( MainFrame::m_ribbonOnClick ) );
+	this->Connect( TP_RIBBON_COPY, wxEVT_COMMAND_RIBBONBUTTON_CLICKED, wxRibbonButtonBarEventHandler( MainFrame::m_ribbonOnClick ) );
+	this->Connect( TP_RIBBON_PASTE, wxEVT_COMMAND_RIBBONBUTTON_CLICKED, wxRibbonButtonBarEventHandler( MainFrame::m_ribbonOnClick ) );
+	this->Connect( TP_RIBBON_FONT, wxEVT_COMMAND_RIBBONBUTTON_CLICKED, wxRibbonButtonBarEventHandler( MainFrame::m_ribbonOnClick ) );
+	this->Connect( TP_RIBBON_THEME, wxEVT_COMMAND_RIBBONBUTTON_CLICKED, wxCommandEventHandler( MainFrame::m_ribbonToggleTheme ) );
+	this->Connect( TP_RIBBON_ABOUT, wxEVT_COMMAND_RIBBONBUTTON_CLICKED, wxRibbonButtonBarEventHandler( MainFrame::m_ribbonOnClick ) );
 }
 
 MainFrame::~MainFrame()
