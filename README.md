@@ -1,3 +1,4 @@
+[日本語](/README_ja.md)
 # wxTestPad
 
 A test program written in C++ with wxWidgets x Meson build system

@@ -1,3 +1,4 @@
+[English](/README.md)
 # wxTestPad
 
 C++, wxWidgetsとMesonを使用して書かれたテストプログラム
