@@ -34,3 +34,6 @@ meson compile -C builddir
 ```console
 ./builddir/wxTestPad
 ```
+
+> [!IMPORTANT]
+> I am not responsible for any damage caused by the use of this program.
