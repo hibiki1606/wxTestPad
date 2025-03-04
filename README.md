@@ -8,7 +8,7 @@ This project should be work on Windows, Linux, and hopefully MacOS
 
 You need a C++ compiler, Meson, at least version 3 of wxWidgets
 
-Also you need wxFormBuilder to generate header / class files that requires to build the project. What you need to build is [here](/gui/buildergen/TpGUI.fbp).
+Also you need wxFormBuilder to generate header / class files that requires to build the project. You can generate them by building [this](/gui/buildergen/TpGUI.fbp).
 
 Be super careful before running it, it always depends on your system!
 
