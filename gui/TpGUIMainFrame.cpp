@@ -13,7 +13,7 @@ TpGUIMainFrame::TpGUIMainFrame(wxWindow* parent) : MainFrame(parent), m_notepad(
     });
     
     this->SetTitle(TP_PROJECT_NAME);
-    this->SetStatusText("The app is ready !");
+    this->SetStatusText(wxString::Format("%s is ready!", TP_PROJECT_NAME));
 }
 
 void TpGUIMainFrame::MainFrameOnClose(wxCloseEvent& event) {
@@ -32,7 +32,7 @@ void TpGUIMainFrame::MainFrameOnClose(wxCloseEvent& event) {
             case wxID_YES: return SaveFile();
             case wxID_NO: return true; // Continue closing
             case wxID_CANCEL: return false; // Abort closing
-            default: wxLogError("Unexpected value %d", result); return true;
+            default: wxLogError("Unexpected value: %d", result); return true;
         }
     }();
 
@@ -121,6 +121,8 @@ void TpGUIMainFrame::m_ribbonOnClick(wxRibbonButtonBarEvent& event) {
             break;
         }
     }
+    
+    return;
 }
 
 void TpGUIMainFrame::m_ribbonToggleTheme(wxCommandEvent& event) {
