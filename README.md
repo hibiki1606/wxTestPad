@@ -6,9 +6,8 @@ This project should be work on Windows, Linux, and hopefully MacOS
 
 ## Building (GCC on Arch Linux or MSYS2 ucrt64)
 
-You need a C++ compiler, Meson and at least version 3 of wxWidgets
-
-You may need to install wxFormBuilder to edit / modify the [GUI](/gui/buildergen/wxTpGUI.fbp)
+You need a C++ compiler, Meson, at least version 3 of wxWidgets 
+Also you need wxFormBuilder to generate header / class files that requires to build the project. [GUI](/gui/buildergen/wxTpGUI.fbp)
 
 Be super careful before running it, it always depends on your system!
 
