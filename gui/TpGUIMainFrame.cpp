@@ -1,5 +1,6 @@
 #include <wx/aboutdlg.h>
 #include <wx/fontdlg.h>
+#include <wx/clipbrd.h>
 
 #include "TpGUIMainFrame.h"
 
@@ -71,6 +72,35 @@ bool TpGUIMainFrame::SaveFileDialog() {
     return m_notepad.Save(filePath);
 }
 
+bool TpGUIMainFrame::SetClipboard(const wxString& text) {
+    if (!wxTheClipboard->Open()) {
+        wxLogError("Failed to open the clipboard");
+        return false;
+    }
+
+    wxTheClipboard->SetData(new wxTextDataObject(text));
+    wxTheClipboard->Flush();
+    wxTheClipboard->Close();
+
+    return true;
+}
+
+wxString TpGUIMainFrame::GetClipboard() {
+    if (!(wxTheClipboard->Open())) {
+        wxLogError("Failed to open the clipboard");
+        return wxEmptyString;
+    }
+
+    if (!wxTheClipboard->IsSupported(wxDF_TEXT)) {
+        wxTheClipboard->Close();
+        return wxEmptyString;
+    }
+    wxTextDataObject data;
+    wxTheClipboard->GetData(data);
+    wxTheClipboard->Close();
+    return data.GetText();
+}
+
 bool TpGUIMainFrame::FontDialog() {
     wxFontData data;
     data.SetInitialFont(m_textCtrl->GetFont());
@@ -100,9 +130,11 @@ void TpGUIMainFrame::m_ribbonOnClick(wxRibbonButtonBarEvent& event) {
             break;
         }
         case TP_RIBBON_COPY: {
+            SetClipboard(m_textCtrl->GetStringSelection());
             break;
         }
         case TP_RIBBON_PASTE: {
+            m_textCtrl->AppendText(GetClipboard());
             break;
         }
         case TP_RIBBON_FONT: {
