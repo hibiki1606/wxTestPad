@@ -11,8 +11,8 @@ class TpGUIMainFrame : public MainFrame {
     
     void MainFrameOnClose(wxCloseEvent& event);
 
-    bool OpenFile();
-    bool SaveFile();
+    bool OpenFileDialog();
+    bool SaveFileDialog();
     bool FontDialog();
 
     void m_ribbonOnClick(wxRibbonButtonBarEvent& event);

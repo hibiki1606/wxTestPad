@@ -29,7 +29,7 @@ void TpGUIMainFrame::MainFrameOnClose(wxCloseEvent& event) {
         int result = dialog.ShowModal();
 
         switch (result) {
-            case wxID_YES: return SaveFile();
+            case wxID_YES: return SaveFileDialog();
             case wxID_NO: return true; // Continue closing
             case wxID_CANCEL: return false; // Abort closing
             default: wxLogError("Unexpected value: %d", result); return true;
@@ -45,7 +45,7 @@ void TpGUIMainFrame::MainFrameOnClose(wxCloseEvent& event) {
     return;
 }
 
-bool TpGUIMainFrame::OpenFile() {
+bool TpGUIMainFrame::OpenFileDialog() {
     wxFileDialog openFileDialog(
         this, "Open text document", wxEmptyString, wxEmptyString,
         "Text documents (*.txt;*.text)|*.txt;*.text|All files (*.*)|*.*",
@@ -58,7 +58,7 @@ bool TpGUIMainFrame::OpenFile() {
     return m_notepad.Open(filePath);
 }
 
-bool TpGUIMainFrame::SaveFile() {
+bool TpGUIMainFrame::SaveFileDialog() {
     wxFileDialog saveFileDialog(
         this, "Save text document", wxEmptyString, "document.txt",
         "Text documents (*.txt;*.text)|*.txt;*.text",
@@ -92,11 +92,11 @@ void TpGUIMainFrame::m_ribbonOnClick(wxRibbonButtonBarEvent& event) {
     
     switch (ribbonControlId) {
         case TP_RIBBON_OPEN: {
-            OpenFile();
+            OpenFileDialog();
             break;
         }
         case TP_RIBBON_SAVEAS: {
-            SaveFile();
+            SaveFileDialog();
             break;
         }
         case TP_RIBBON_COPY: {
