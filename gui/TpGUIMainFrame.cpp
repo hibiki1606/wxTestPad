@@ -86,7 +86,7 @@ bool TpGUIMainFrame::SetClipboard(const wxString& text) {
 }
 
 wxString TpGUIMainFrame::GetClipboard() {
-    if (!(wxTheClipboard->Open())) {
+    if (!wxTheClipboard->Open()) {
         wxLogError("Failed to open the clipboard");
         return wxEmptyString;
     }
