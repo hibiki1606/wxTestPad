@@ -7,18 +7,15 @@ class Notepad {
     Notepad(wxTextCtrl* textCtrl);
     ~Notepad();
 
-    using NotifyIsSavedChanged = std::function<void(bool)>;
-    void SetNotifyIsSavedChanged(NotifyIsSavedChanged callback);
-
-    void NotifyTextChanged();
+    using NotifyIsModifiedChanged = std::function<void(bool)>;
+    void SetNotifyIsModifiedChanged(NotifyIsModifiedChanged callback);
 
     bool Open(const wxString& docPath);
     bool Save(const wxString& docPath);    
 
-    bool GetIsSaved();
-    void SetIsSaved(bool isSaved);
-    
+    bool GetIsModified();
     wxString GetDocumentTitle();
+    void SetDocumentTitle(const wxString& title);
 
    private:
     enum CommandType { OPEN, SAVE };
@@ -28,8 +25,7 @@ class Notepad {
     wxString m_documentTitle;
 
     bool m_isSaved;
-    NotifyIsSavedChanged m_isSavedChangedCallBack;
+    NotifyIsModifiedChanged m_isModifiedChangedCallBack;
 
-    void m_newDocument(const enum CommandType& commandType, const wxString& docContents, const wxString& docTitle);
-    void m_updateStatus();
+    void m_newDocument(const wxString& title);
 };

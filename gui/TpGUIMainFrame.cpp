@@ -7,9 +7,9 @@
 #include "wxtestpad.h"
 
 TpGUIMainFrame::TpGUIMainFrame(wxWindow* parent) : MainFrame(parent), m_notepad(m_textCtrl) {
-    m_notepad.SetNotifyIsSavedChanged([this](bool isSaved) {
+    m_notepad.SetNotifyIsModifiedChanged([this](bool isModified) {
         this->SetTitle(
-            wxString::Format("%s%s - %s", (isSaved ? "" : "*"), m_notepad.GetDocumentTitle(), TP_PROJECT_NAME)
+            wxString::Format("%s%s - %s", (isModified ? "*" : ""), m_notepad.GetDocumentTitle(), TP_PROJECT_NAME)
         );
     });
     
@@ -18,7 +18,7 @@ TpGUIMainFrame::TpGUIMainFrame(wxWindow* parent) : MainFrame(parent), m_notepad(
 }
 
 void TpGUIMainFrame::MainFrameOnClose(wxCloseEvent& event) {
-    if (m_notepad.GetIsSaved()) {
+    if (m_notepad.GetIsModified()) {
         event.Skip();
         return;
     }

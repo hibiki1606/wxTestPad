@@ -7,10 +7,12 @@
 Notepad::Notepad(wxTextCtrl* textCtrl)
     : m_textCtrl(textCtrl),
       m_savedText(wxEmptyString),
-      m_documentTitle("Untitled"),
-      m_isSaved(true) {
+      m_documentTitle("Untitled")
+      {
     m_textCtrl->Bind(wxEVT_TEXT, [&](wxCommandEvent&) {
-        NotifyTextChanged();
+        if(m_savedText == m_textCtrl->GetValue())
+            m_textCtrl->SetModified(false);
+        m_isModifiedChangedCallBack(m_textCtrl->IsModified());
     });
     wxLogDebug("Notepad object has been created.");
 }
@@ -19,74 +21,31 @@ Notepad::~Notepad() {
     wxLogDebug("Notepad object has been deleted.");
 }
 
-void Notepad::NotifyTextChanged() {
-    SetIsSaved(m_textCtrl->GetValue() == m_savedText);
+void Notepad::m_newDocument(const wxString& title) {
+    SetDocumentTitle(title);
+    m_savedText = m_textCtrl->GetValue();
+    m_isModifiedChangedCallBack(false);
 }
 
 bool Notepad::Open(const wxString& docPath) {
-    wxFileInputStream input(docPath);
-    // wxTextInputStream text(input, "\x09", wxConvUTF8);
-    if (!input.IsOk()) {
-        wxLogError("Failed to open %s", docPath);
-        return false;
-    }
-
-    wxString contents;
-    wxStringOutputStream output(&contents);
-
-    input.Read(output);
-    // while (!input.Eof()) {
-    //     contents += text.ReadLine() + "\n";
-    // }
-
-    m_newDocument(CommandType::OPEN, contents, docPath);
-
-    return true;
+    bool ret = m_textCtrl->LoadFile(docPath);
+    m_newDocument(docPath);
+    return ret;
 }
 
 bool Notepad::Save(const wxString& docPath) {
-    wxFileOutputStream output(docPath);
-
-    if (!output.IsOk()) {
-        wxLogError("Failed to open %s", docPath);
-        return false;
-    }
-
-    wxString textToSave = m_textCtrl->GetValue();
-
-    wxCharBuffer utf8Buffer = textToSave.utf8_str();
-    size_t textLength = utf8Buffer.length();
-
-    output.Write(utf8Buffer.data(), textLength);
-    m_newDocument(CommandType::SAVE, textToSave, docPath);
-
-    return true;
+    bool ret = m_textCtrl->SaveFile(docPath);
+    m_newDocument(docPath);
+    return ret;
 }
 
-void Notepad::SetNotifyIsSavedChanged(NotifyIsSavedChanged callback) {
-    m_isSavedChangedCallBack = callback;
-}
-
-bool Notepad::GetIsSaved() { return m_isSaved; }
-void Notepad::SetIsSaved(bool status) {
-    // if (m_isSaved == status)
-    //     return;
-
-    m_isSaved = status;
-    m_isSavedChangedCallBack(status);
+void Notepad::SetNotifyIsModifiedChanged(NotifyIsModifiedChanged callback) {
+    m_isModifiedChangedCallBack = callback;
 }
 
 wxString Notepad::GetDocumentTitle() { return m_documentTitle; }
+void Notepad::SetDocumentTitle(const wxString& title) { m_documentTitle = title; }
 
-void Notepad::m_newDocument(const enum CommandType& commandType, const wxString& docContents, const wxString& docTitle) {
-    SetIsSaved(true);
-    m_savedText = docContents;
-    m_documentTitle = docTitle;
-    if (commandType == CommandType::OPEN)
-        m_textCtrl->SetValue(docContents);
-}
-
-void Notepad::m_updateStatus() {
-    NotifyTextChanged();
-    m_isSavedChangedCallBack(m_isSaved);
+bool Notepad::GetIsModified() {
+    return m_textCtrl->IsModified();
 }
