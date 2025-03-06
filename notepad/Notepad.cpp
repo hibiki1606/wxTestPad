@@ -50,7 +50,7 @@ bool Notepad::Find() {
     const wxString& originalText = this->m_textCtrl->GetValue();
     size_t currentPos = this->m_textCtrl->GetInsertionPoint();
 
-    size_t futurePosition = originalText.find(query, currentPos + query.length());
+    size_t futurePosition = originalText.find(query, currentPos + 1);
     if (futurePosition == wxString::npos) {
         wxMessageDialog dialog(m_parent, wxString::Format("No result for the text '%s'", query), TP_PROJECT_NAME, wxOK | wxICON_INFORMATION);
         dialog.ShowModal();
