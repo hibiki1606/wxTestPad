@@ -56,7 +56,7 @@ MainFrame::MainFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 
 	bSizer1->Add( m_ribbonBar, 0, wxALL|wxEXPAND, 0 );
 
-	m_textCtrl = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE );
+	m_textCtrl = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE|wxTE_RICH2 );
 	bSizer1->Add( m_textCtrl, 1, wxALL|wxEXPAND, 0 );
 
 
