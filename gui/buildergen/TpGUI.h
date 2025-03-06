@@ -43,6 +43,7 @@ class MainFrame : public wxFrame
 		{
 			TP_RIBBON_OPEN = 6000,
 			TP_RIBBON_SAVEAS,
+			TP_RIBBON_FIND,
 			TP_RIBBON_COPY,
 			TP_RIBBON_PASTE,
 			TP_RIBBON_FONT,
@@ -54,6 +55,8 @@ class MainFrame : public wxFrame
 		wxRibbonPage* m_ribbonPageTestPad;
 		wxRibbonPanel* m_ribbonPanelFile;
 		wxRibbonButtonBar* m_ribbonButtonBar7;
+		wxRibbonPanel* m_ribbonPanelEdit;
+		wxRibbonButtonBar* m_ribbonButtonBar6;
 		wxRibbonPanel* m_ribbonPanelClipboard;
 		wxRibbonButtonBar* m_ribbonButtonBar5;
 		wxRibbonPanel* m_ribbonPanelText;

@@ -4,11 +4,12 @@
 
 #include "Notepad.h"
 
-Notepad::Notepad(wxTextCtrl* textCtrl)
-    : m_textCtrl(textCtrl),
+Notepad::Notepad(wxWindow* parent, wxTextCtrl* textCtrl)
+    : m_parent(parent),
+      m_textCtrl(textCtrl),
       m_savedText(wxEmptyString),
       m_documentTitle("Untitled")
-      {
+    {
     m_textCtrl->Bind(wxEVT_TEXT, [&](wxCommandEvent&) {
         if(m_savedText == m_textCtrl->GetValue())
             m_textCtrl->SetModified(false);
@@ -38,6 +39,29 @@ bool Notepad::Save(const wxString& docPath) {
     m_newDocument(docPath);
     return ret;
 }
+
+bool Notepad::Find() {
+    wxTextEntryDialog textEntryDialog(m_parent, wxEmptyString);
+    textEntryDialog.SetTitle("Find...");
+    if (textEntryDialog.ShowModal() != wxID_OK)
+        return false;
+
+    const wxString& query = textEntryDialog.GetValue();
+    const wxString& originalText = this->m_textCtrl->GetValue();
+    size_t currentPos = this->m_textCtrl->GetInsertionPoint();
+
+    size_t futurePosition = originalText.find(query, currentPos + query.length());
+    if (futurePosition == wxString::npos) {
+        wxMessageDialog dialog(m_parent, wxString::Format("No result for the text '%s'", query), TP_PROJECT_NAME, wxOK | wxICON_INFORMATION);
+        dialog.ShowModal();
+
+        return false;
+    }
+    this->m_textCtrl->SetInsertionPoint(futurePosition);
+
+    return true;
+}
+
 
 void Notepad::SetNotifyIsModifiedChanged(NotifyIsModifiedChanged callback) {
     m_isModifiedChangedCallBack = callback;

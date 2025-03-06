@@ -4,14 +4,15 @@
 
 class Notepad {
    public:
-    Notepad(wxTextCtrl* textCtrl);
+    Notepad(wxWindow* parent, wxTextCtrl* textCtrl);
     ~Notepad();
 
     using NotifyIsModifiedChanged = std::function<void(bool)>;
     void SetNotifyIsModifiedChanged(NotifyIsModifiedChanged callback);
 
     bool Open(const wxString& docPath);
-    bool Save(const wxString& docPath);    
+    bool Save(const wxString& docPath);
+    bool Find();
 
     bool GetIsModified();
     wxString GetDocumentTitle();
@@ -19,6 +20,7 @@ class Notepad {
 
    private:
     enum CommandType { OPEN, SAVE };
+    wxWindow* m_parent;
     wxTextCtrl* m_textCtrl;
 
     wxString m_savedText;

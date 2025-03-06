@@ -17,6 +17,7 @@ class TpGUIMainFrame : public MainFrame {
 
     bool SetClipboard(const wxString& text);
     wxString GetClipboard();
+    
     void m_ribbonOnClick(wxRibbonButtonBarEvent& event);
     void m_ribbonToggleTheme(wxCommandEvent& event);
 

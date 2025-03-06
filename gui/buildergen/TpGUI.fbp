@@ -148,7 +148,7 @@
               <property name="window_extra_style"></property>
               <property name="window_name"></property>
               <property name="window_style"></property>
-              <object class="wxRibbonPanel" expanded="true">
+              <object class="wxRibbonPanel" expanded="false">
                 <property name="bg"></property>
                 <property name="bitmap"></property>
                 <property name="context_help"></property>
@@ -172,7 +172,7 @@
                 <property name="window_extra_style"></property>
                 <property name="window_name"></property>
                 <property name="window_style"></property>
-                <object class="wxRibbonButtonBar" expanded="true">
+                <object class="wxRibbonButtonBar" expanded="false">
                   <property name="bg"></property>
                   <property name="context_help"></property>
                   <property name="context_menu">1</property>
@@ -193,7 +193,7 @@
                   <property name="window_extra_style"></property>
                   <property name="window_name"></property>
                   <property name="window_style"></property>
-                  <object class="ribbonButton" expanded="true">
+                  <object class="ribbonButton" expanded="false">
                     <property name="bitmap">Load From Embedded File; res/file.bmp</property>
                     <property name="help">Open a file...</property>
                     <property name="id">TP_RIBBON_OPEN</property>
@@ -201,7 +201,7 @@
                     <property name="permission">protected</property>
                     <event name="OnRibbonButtonClicked">m_ribbonOnClick</event>
                   </object>
-                  <object class="ribbonButton" expanded="true">
+                  <object class="ribbonButton" expanded="false">
                     <property name="bitmap">Load From Embedded File; res/save.bmp</property>
                     <property name="help">Save the text into a file</property>
                     <property name="id">TP_RIBBON_SAVEAS</property>
@@ -222,10 +222,10 @@
                 <property name="font"></property>
                 <property name="hidden">0</property>
                 <property name="id">wxID_ANY</property>
-                <property name="label">Clipboard</property>
+                <property name="label">Edit</property>
                 <property name="maximum_size"></property>
                 <property name="minimum_size"></property>
-                <property name="name">m_ribbonPanelClipboard</property>
+                <property name="name">m_ribbonPanelEdit</property>
                 <property name="permission">protected</property>
                 <property name="pos"></property>
                 <property name="size"></property>
@@ -247,10 +247,65 @@
                   <property name="id">wxID_ANY</property>
                   <property name="maximum_size"></property>
                   <property name="minimum_size"></property>
-                  <property name="name">m_ribbonButtonBar5</property>
+                  <property name="name">m_ribbonButtonBar6</property>
                   <property name="permission">protected</property>
                   <property name="pos"></property>
                   <property name="size"></property>
+                  <property name="subclass">; ; forward_declare</property>
+                  <property name="tooltip"></property>
+                  <property name="window_extra_style"></property>
+                  <property name="window_name"></property>
+                  <property name="window_style"></property>
+                  <object class="ribbonButton" expanded="true">
+                    <property name="bitmap">Load From Embedded File; res/find.bmp</property>
+                    <property name="help">Find...</property>
+                    <property name="id">TP_RIBBON_FIND</property>
+                    <property name="label">Find...</property>
+                    <property name="permission">protected</property>
+                    <event name="OnRibbonButtonClicked">m_ribbonOnClick</event>
+                  </object>
+                </object>
+              </object>
+              <object class="wxRibbonPanel" expanded="false">
+                <property name="bg"></property>
+                <property name="bitmap"></property>
+                <property name="context_help"></property>
+                <property name="context_menu">1</property>
+                <property name="drag_accept_files">0</property>
+                <property name="enabled">1</property>
+                <property name="fg"></property>
+                <property name="font"></property>
+                <property name="hidden">0</property>
+                <property name="id">wxID_ANY</property>
+                <property name="label">Clipboard</property>
+                <property name="maximum_size"></property>
+                <property name="minimum_size"></property>
+                <property name="name">m_ribbonPanelClipboard</property>
+                <property name="permission">protected</property>
+                <property name="pos"></property>
+                <property name="size">-1,-1</property>
+                <property name="style">wxRIBBON_PANEL_DEFAULT_STYLE</property>
+                <property name="subclass">; ; forward_declare</property>
+                <property name="tooltip"></property>
+                <property name="window_extra_style"></property>
+                <property name="window_name"></property>
+                <property name="window_style"></property>
+                <object class="wxRibbonButtonBar" expanded="false">
+                  <property name="bg"></property>
+                  <property name="context_help"></property>
+                  <property name="context_menu">1</property>
+                  <property name="drag_accept_files">0</property>
+                  <property name="enabled">1</property>
+                  <property name="fg"></property>
+                  <property name="font"></property>
+                  <property name="hidden">0</property>
+                  <property name="id">wxID_ANY</property>
+                  <property name="maximum_size">-1,-1</property>
+                  <property name="minimum_size"></property>
+                  <property name="name">m_ribbonButtonBar5</property>
+                  <property name="permission">protected</property>
+                  <property name="pos"></property>
+                  <property name="size">-1,-1</property>
                   <property name="subclass">; ; forward_declare</property>
                   <property name="tooltip"></property>
                   <property name="window_extra_style"></property>
@@ -329,7 +384,7 @@
                   </object>
                 </object>
               </object>
-              <object class="wxRibbonPanel" expanded="false">
+              <object class="wxRibbonPanel" expanded="true">
                 <property name="bg"></property>
                 <property name="bitmap"></property>
                 <property name="context_help"></property>
@@ -338,7 +393,7 @@
                 <property name="enabled">1</property>
                 <property name="fg"></property>
                 <property name="font"></property>
-                <property name="hidden">0</property>
+                <property name="hidden">1</property>
                 <property name="id">wxID_ANY</property>
                 <property name="label">Appearance</property>
                 <property name="maximum_size"></property>
@@ -353,7 +408,7 @@
                 <property name="window_extra_style"></property>
                 <property name="window_name"></property>
                 <property name="window_style"></property>
-                <object class="wxRibbonButtonBar" expanded="false">
+                <object class="wxRibbonButtonBar" expanded="true">
                   <property name="bg"></property>
                   <property name="context_help"></property>
                   <property name="context_menu">1</property>
