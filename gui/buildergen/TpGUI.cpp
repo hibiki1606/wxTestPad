@@ -13,6 +13,7 @@
 #include "res/font.bmp.h"
 #include "res/paste.bmp.h"
 #include "res/question.bmp.h"
+#include "res/replace.bmp.h"
 #include "res/save.bmp.h"
 #include "res/switch.bmp.h"
 
@@ -35,7 +36,8 @@ MainFrame::MainFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 	m_ribbonButtonBar7->AddButton( TP_RIBBON_SAVEAS, _("Save as..."), save_bmp_to_wx_bitmap(), _("Save the text into a file"));
 	m_ribbonPanelEdit = new wxRibbonPanel( m_ribbonPageTestPad, wxID_ANY, _("Edit") , wxNullBitmap , wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_DEFAULT_STYLE );
 	m_ribbonButtonBar6 = new wxRibbonButtonBar( m_ribbonPanelEdit, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0 );
-	m_ribbonButtonBar6->AddButton( TP_RIBBON_FIND, _("Find..."), find_bmp_to_wx_bitmap(), _("Find..."));
+	m_ribbonButtonBar6->AddButton( TP_RIBBON_FIND, _("Find Next..."), find_bmp_to_wx_bitmap(), _("Find..."));
+	m_ribbonButtonBar6->AddButton( TP_RIBBON_REPLACE, _("Replace..."), replace_bmp_to_wx_bitmap(), _("Replace..."));
 	m_ribbonPanelClipboard = new wxRibbonPanel( m_ribbonPageTestPad, wxID_ANY, _("Clipboard") , wxNullBitmap , wxDefaultPosition, wxSize( -1,-1 ), wxRIBBON_PANEL_DEFAULT_STYLE );
 	m_ribbonButtonBar5 = new wxRibbonButtonBar( m_ribbonPanelClipboard, wxID_ANY, wxDefaultPosition, wxSize( -1,-1 ), 0 );
 	m_ribbonButtonBar5->AddButton( TP_RIBBON_COPY, _("Copy"), copy_bmp_to_wx_bitmap(), _("Copy the selected text into the clipboard"));
@@ -71,6 +73,7 @@ MainFrame::MainFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 	this->Connect( TP_RIBBON_OPEN, wxEVT_COMMAND_RIBBONBUTTON_CLICKED, wxRibbonButtonBarEventHandler( MainFrame::m_ribbonOnClick ) );
 	this->Connect( TP_RIBBON_SAVEAS, wxEVT_COMMAND_RIBBONBUTTON_CLICKED, wxRibbonButtonBarEventHandler( MainFrame::m_ribbonOnClick ) );
 	this->Connect( TP_RIBBON_FIND, wxEVT_COMMAND_RIBBONBUTTON_CLICKED, wxRibbonButtonBarEventHandler( MainFrame::m_ribbonOnClick ) );
+	this->Connect( TP_RIBBON_REPLACE, wxEVT_COMMAND_RIBBONBUTTON_CLICKED, wxRibbonButtonBarEventHandler( MainFrame::m_ribbonOnClick ) );
 	this->Connect( TP_RIBBON_COPY, wxEVT_COMMAND_RIBBONBUTTON_CLICKED, wxRibbonButtonBarEventHandler( MainFrame::m_ribbonOnClick ) );
 	this->Connect( TP_RIBBON_PASTE, wxEVT_COMMAND_RIBBONBUTTON_CLICKED, wxRibbonButtonBarEventHandler( MainFrame::m_ribbonOnClick ) );
 	this->Connect( TP_RIBBON_FONT, wxEVT_COMMAND_RIBBONBUTTON_CLICKED, wxRibbonButtonBarEventHandler( MainFrame::m_ribbonOnClick ) );
@@ -79,5 +82,93 @@ MainFrame::MainFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 }
 
 MainFrame::~MainFrame()
+{
+}
+
+ReplaceDialog::ReplaceDialog( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxDialog( parent, id, title, pos, size, style )
+{
+	this->SetSizeHints( wxDefaultSize, wxDefaultSize );
+
+	wxBoxSizer* bSizer2;
+	bSizer2 = new wxBoxSizer( wxVERTICAL );
+
+	wxFlexGridSizer* fgSizer1;
+	fgSizer1 = new wxFlexGridSizer( 0, 3, 0, 0 );
+	fgSizer1->SetFlexibleDirection( wxBOTH );
+	fgSizer1->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
+
+	m_staticText2 = new wxStaticText( this, wxID_ANY, _("from"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText2->Wrap( -1 );
+	fgSizer1->Add( m_staticText2, 0, wxALIGN_CENTER_VERTICAL|wxALIGN_RIGHT|wxALL, 5 );
+
+	m_textCtrlFrom = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 150,-1 ), 0 );
+	fgSizer1->Add( m_textCtrlFrom, 0, wxALL, 5 );
+
+	m_checkBoxReplaceAll = new wxCheckBox( this, wxID_ANY, _("Replace All"), wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer1->Add( m_checkBoxReplaceAll, 0, wxALIGN_CENTER|wxALL, 5 );
+
+	m_staticTextTo = new wxStaticText( this, wxID_ANY, _("to"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextTo->Wrap( -1 );
+	fgSizer1->Add( m_staticTextTo, 0, wxALIGN_CENTER_VERTICAL|wxALIGN_RIGHT|wxALL, 5 );
+
+	m_textCtrlTo = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 150,-1 ), 0 );
+	fgSizer1->Add( m_textCtrlTo, 0, wxALL, 5 );
+
+	m_buttonOk = new wxButton( this, wxID_OK, _("OK"), wxDefaultPosition, wxSize( -1,-1 ), 0 );
+
+	m_buttonOk->SetDefault();
+	fgSizer1->Add( m_buttonOk, 0, wxALIGN_CENTER|wxALL, 5 );
+
+
+	bSizer2->Add( fgSizer1, 1, wxEXPAND, 5 );
+
+
+	this->SetSizer( bSizer2 );
+	this->Layout();
+	bSizer2->Fit( this );
+
+	this->Centre( wxBOTH );
+
+	// Connect Events
+	m_buttonOk->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( ReplaceDialog::m_OkOnClick ), NULL, this );
+}
+
+ReplaceDialog::~ReplaceDialog()
+{
+}
+
+FindDialog::FindDialog( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxDialog( parent, id, title, pos, size, style )
+{
+	this->SetSizeHints( wxDefaultSize, wxDefaultSize );
+
+	wxBoxSizer* bSizer3;
+	bSizer3 = new wxBoxSizer( wxVERTICAL );
+
+	wxFlexGridSizer* fgSizer2;
+	fgSizer2 = new wxFlexGridSizer( 0, 2, 0, 0 );
+	fgSizer2->SetFlexibleDirection( wxBOTH );
+	fgSizer2->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
+
+	m_textCtrlFind = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 150,-1 ), 0 );
+	fgSizer2->Add( m_textCtrlFind, 0, wxALL, 5 );
+
+	m_buttonFindNext = new wxButton( this, wxID_ANY, _("Find Next..."), wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer2->Add( m_buttonFindNext, 0, wxALL, 5 );
+
+
+	bSizer3->Add( fgSizer2, 1, wxEXPAND, 5 );
+
+
+	this->SetSizer( bSizer3 );
+	this->Layout();
+	bSizer3->Fit( this );
+
+	this->Centre( wxBOTH );
+
+	// Connect Events
+	m_buttonFindNext->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FindDialog::m_FindNextOnClick ), NULL, this );
+}
+
+FindDialog::~FindDialog()
 {
 }

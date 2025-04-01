@@ -28,6 +28,10 @@
 #include <wx/sizer.h>
 #include <wx/statusbr.h>
 #include <wx/frame.h>
+#include <wx/stattext.h>
+#include <wx/checkbox.h>
+#include <wx/button.h>
+#include <wx/dialog.h>
 
 ///////////////////////////////////////////////////////////////////////////
 
@@ -44,6 +48,7 @@ class MainFrame : public wxFrame
 			TP_RIBBON_OPEN = 6000,
 			TP_RIBBON_SAVEAS,
 			TP_RIBBON_FIND,
+			TP_RIBBON_REPLACE,
 			TP_RIBBON_COPY,
 			TP_RIBBON_PASTE,
 			TP_RIBBON_FONT,
@@ -80,6 +85,56 @@ class MainFrame : public wxFrame
 		MainFrame( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("wxTpGUI"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 900,600 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
 
 		~MainFrame();
+
+};
+
+///////////////////////////////////////////////////////////////////////////////
+/// Class ReplaceDialog
+///////////////////////////////////////////////////////////////////////////////
+class ReplaceDialog : public wxDialog
+{
+	private:
+
+	protected:
+		wxStaticText* m_staticText2;
+		wxTextCtrl* m_textCtrlFrom;
+		wxCheckBox* m_checkBoxReplaceAll;
+		wxStaticText* m_staticTextTo;
+		wxTextCtrl* m_textCtrlTo;
+		wxButton* m_buttonOk;
+
+		// Virtual event handlers, override them in your derived class
+		virtual void m_OkOnClick( wxCommandEvent& event ) { event.Skip(); }
+
+
+	public:
+
+		ReplaceDialog( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("Replace..."), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxDEFAULT_DIALOG_STYLE );
+
+		~ReplaceDialog();
+
+};
+
+///////////////////////////////////////////////////////////////////////////////
+/// Class FindDialog
+///////////////////////////////////////////////////////////////////////////////
+class FindDialog : public wxDialog
+{
+	private:
+
+	protected:
+		wxTextCtrl* m_textCtrlFind;
+		wxButton* m_buttonFindNext;
+
+		// Virtual event handlers, override them in your derived class
+		virtual void m_FindNextOnClick( wxCommandEvent& event ) { event.Skip(); }
+
+
+	public:
+
+		FindDialog( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("Find Next..."), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxDEFAULT_DIALOG_STYLE );
+
+		~FindDialog();
 
 };
 

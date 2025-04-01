@@ -2,11 +2,11 @@
 #include <wx/fontdlg.h>
 #include <wx/clipbrd.h>
 
-#include "TpGUIMainFrame.h"
+#include "TpMainFrame.h"
 
 #include "wxtestpad.h"
 
-TpGUIMainFrame::TpGUIMainFrame(wxWindow* parent) : MainFrame(parent), m_notepad(this, m_textCtrl) {
+TpMainFrame::TpMainFrame(wxWindow* parent) : MainFrame(parent), m_notepad(this, m_textCtrl) {
     m_notepad.SetNotifyIsModifiedChanged([this](bool isModified) {
         this->SetTitle(
             wxString::Format("%s%s - %s", (isModified ? "*" : ""), m_notepad.GetDocumentTitle(), TP_PROJECT_NAME)
@@ -17,7 +17,7 @@ TpGUIMainFrame::TpGUIMainFrame(wxWindow* parent) : MainFrame(parent), m_notepad(
     this->SetStatusText(wxString::Format("%s is ready!", TP_PROJECT_NAME));
 }
 
-void TpGUIMainFrame::MainFrameOnClose(wxCloseEvent& event) {
+void TpMainFrame::MainFrameOnClose(wxCloseEvent& event) {
     if (!m_notepad.GetIsModified()) {
         event.Skip();
         return;
@@ -46,33 +46,15 @@ void TpGUIMainFrame::MainFrameOnClose(wxCloseEvent& event) {
     return;
 }
 
-bool TpGUIMainFrame::OpenFileDialog() {
-    wxFileDialog openFileDialog(
-        this, "Open text document", wxEmptyString, wxEmptyString,
-        "Text documents (*.txt;*.text)|*.txt;*.text|All files (*.*)|*.*",
-        wxFD_OPEN | wxFD_FILE_MUST_EXIST);
-    int result = openFileDialog.ShowModal();
-
-    if (result != wxID_OK) return false;
-
-    wxString filePath = openFileDialog.GetPath();
-    return m_notepad.Open(filePath);
+bool TpMainFrame::OpenFileDialog() {
+    return m_notepad.Open();
 }
 
-bool TpGUIMainFrame::SaveFileDialog() {
-    wxFileDialog saveFileDialog(
-        this, "Save text document", wxEmptyString, "document.txt",
-        "Text documents (*.txt;*.text)|*.txt;*.text",
-        wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
-    int result = saveFileDialog.ShowModal();
-
-    if (result != wxID_OK) return false;
-
-    wxString filePath = saveFileDialog.GetPath();
-    return m_notepad.Save(filePath);
+bool TpMainFrame::SaveFileDialog() {
+    return m_notepad.Save();
 }
 
-bool TpGUIMainFrame::SetClipboard(const wxString& text) {
+bool TpMainFrame::SetClipboard(const wxString& text) {
     if (!wxTheClipboard->Open()) {
         wxLogError("Failed to open the clipboard");
         return false;
@@ -85,7 +67,7 @@ bool TpGUIMainFrame::SetClipboard(const wxString& text) {
     return true;
 }
 
-wxString TpGUIMainFrame::GetClipboard() {
+wxString TpMainFrame::GetClipboard() {
     if (!wxTheClipboard->Open()) {
         wxLogError("Failed to open the clipboard");
         return wxEmptyString;
@@ -95,13 +77,14 @@ wxString TpGUIMainFrame::GetClipboard() {
         wxTheClipboard->Close();
         return wxEmptyString;
     }
+
     wxTextDataObject data;
     wxTheClipboard->GetData(data);
     wxTheClipboard->Close();
     return data.GetText();
 }
 
-bool TpGUIMainFrame::FontDialog() {
+bool TpMainFrame::FontDialog() {
     wxFontData data;
     data.SetInitialFont(m_textCtrl->GetFont());
 
@@ -114,11 +97,10 @@ bool TpGUIMainFrame::FontDialog() {
     return true;
 }
 
-void TpGUIMainFrame::m_ribbonOnClick(wxRibbonButtonBarEvent& event) {
+void TpMainFrame::m_ribbonOnClick(wxRibbonButtonBarEvent& event) {
     // ribbonButton events should be handled here
     // Enum of ribbonButton ID should be like, TP_RIBBON_{NAME}
     int ribbonControlId = event.GetId();
-    wxLogDebug("Ribbon click: %d", ribbonControlId);
     
     switch (ribbonControlId) {
         case TP_RIBBON_OPEN: {
@@ -131,6 +113,10 @@ void TpGUIMainFrame::m_ribbonOnClick(wxRibbonButtonBarEvent& event) {
         }
         case TP_RIBBON_FIND: {
             m_notepad.Find();
+            break;
+        }
+        case TP_RIBBON_REPLACE: {
+            m_notepad.Replace();
             break;
         }
         case TP_RIBBON_COPY: {
@@ -161,7 +147,7 @@ void TpGUIMainFrame::m_ribbonOnClick(wxRibbonButtonBarEvent& event) {
     return;
 }
 
-void TpGUIMainFrame::m_ribbonToggleTheme(wxCommandEvent& event) {
+void TpMainFrame::m_ribbonToggleTheme(wxCommandEvent& event) {
     // Too unstable to use
     // This function shouldn't be used
     int isClassic = event.IsChecked();

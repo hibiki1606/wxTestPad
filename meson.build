@@ -9,13 +9,19 @@ wx_dep = dependency(
 
 sources = files(
   'gui/buildergen/TpGUI.cpp',
-  'gui/TpGUIMainFrame.cpp',
+  'gui/TpMainFrame.cpp',
+  'gui/TpFindDialog.cpp',
+  'gui/TpReplaceDialog.cpp',
   'notepad/Notepad.cpp',
-  'utilities/TpLogFormatter.cpp',
+  'utilities/logging/TpLogFormatter.cpp',
+  'utilities/Utils.cpp',
   'wxtestpad.cpp',
 )
 
+include_dir = include_directories('./')
+
 executable('wxTestPad', sources,
+  include_directories : include_dir,
   dependencies : [wx_dep],
   install : false
 )

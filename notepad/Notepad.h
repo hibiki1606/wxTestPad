@@ -10,9 +10,10 @@ class Notepad {
     using NotifyIsModifiedChanged = std::function<void(bool)>;
     void SetNotifyIsModifiedChanged(NotifyIsModifiedChanged callback);
 
-    bool Open(const wxString& docPath);
-    bool Save(const wxString& docPath);
+    bool Open();
+    bool Save();
     bool Find();
+    bool Replace();
 
     bool GetIsModified();
     wxString GetDocumentTitle();

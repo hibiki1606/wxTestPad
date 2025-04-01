@@ -5,7 +5,7 @@
 
 #include "notepad/Notepad.h"
 
-class TpGUIMainFrame : public MainFrame {
+class TpMainFrame : public MainFrame {
    protected:
     Notepad m_notepad;
     
@@ -22,5 +22,5 @@ class TpGUIMainFrame : public MainFrame {
     void m_ribbonToggleTheme(wxCommandEvent& event);
 
    public:
-    TpGUIMainFrame(wxWindow* parent);
+    TpMainFrame(wxWindow* parent);
 };

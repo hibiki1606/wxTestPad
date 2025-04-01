@@ -4,6 +4,9 @@
 
 #include "Notepad.h"
 
+#include "gui/TpReplaceDialog.h"
+#include "gui/TpFindDialog.h"
+
 Notepad::Notepad(wxWindow* parent, wxTextCtrl* textCtrl)
     : m_parent(parent),
       m_textCtrl(textCtrl),
@@ -28,37 +31,47 @@ void Notepad::m_newDocument(const wxString& title) {
     m_isModifiedChangedCallBack(false);
 }
 
-bool Notepad::Open(const wxString& docPath) {
-    bool ret = m_textCtrl->LoadFile(docPath);
-    m_newDocument(docPath);
+bool Notepad::Open() {
+    wxFileDialog openFileDialog(
+        m_parent, "Open text document", wxEmptyString, wxEmptyString,
+        "Text documents (*.txt;*.text)|*.txt;*.text|All files (*.*)|*.*",
+        wxFD_OPEN | wxFD_FILE_MUST_EXIST);
+    int result = openFileDialog.ShowModal();
+
+    if (result != wxID_OK) return false;
+
+    wxString filePath = openFileDialog.GetPath();
+
+    bool ret = m_textCtrl->LoadFile(filePath);
+    m_newDocument(filePath);
     return ret;
 }
 
-bool Notepad::Save(const wxString& docPath) {
-    bool ret = m_textCtrl->SaveFile(docPath);
-    m_newDocument(docPath);
+bool Notepad::Save() {
+    wxFileDialog saveFileDialog(
+        m_parent, "Save text document", wxEmptyString, "document.txt",
+        "Text documents (*.txt;*.text)|*.txt;*.text",
+        wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
+    int result = saveFileDialog.ShowModal();
+
+    if (result != wxID_OK) return false;
+
+    wxString filePath = saveFileDialog.GetPath();
+
+    bool ret = m_textCtrl->SaveFile(filePath);
+    m_newDocument(filePath);
     return ret;
 }
 
 bool Notepad::Find() {
-    wxTextEntryDialog textEntryDialog(m_parent, wxEmptyString);
-    textEntryDialog.SetTitle("Find...");
-    if (textEntryDialog.ShowModal() != wxID_OK)
-        return false;
+    TpFindDialog dialog(m_parent, m_textCtrl);
+    dialog.ShowModal();
+    return true;
+}
 
-    const wxString& query = textEntryDialog.GetValue();
-    const wxString& originalText = this->m_textCtrl->GetValue();
-    size_t currentPos = this->m_textCtrl->GetInsertionPoint();
-
-    size_t futurePosition = originalText.find(query, currentPos + 1);
-    if (futurePosition == wxString::npos) {
-        wxMessageDialog dialog(m_parent, wxString::Format("No result for the text '%s'", query), TP_PROJECT_NAME, wxOK | wxICON_INFORMATION);
-        dialog.ShowModal();
-
-        return false;
-    }
-    this->m_textCtrl->SetInsertionPoint(futurePosition);
-
+bool Notepad::Replace() {
+    TpReplaceDialog dialog(m_parent, m_textCtrl);
+    int result = dialog.ShowModal();
     return true;
 }
 

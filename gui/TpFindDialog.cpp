@@ -1,0 +1,26 @@
+#include "TpFindDialog.h"
+
+TpFindDialog::TpFindDialog(wxWindow* parent, wxTextCtrl* textCtrl) : FindDialog(parent) {
+    m_textCtrl = textCtrl;
+    wxLogDebug("Find dialog has been created.");
+}
+
+TpFindDialog::~TpFindDialog() {
+    wxLogDebug("Find dialog has been deleted.");
+}
+
+void TpFindDialog::m_FindNextOnClick(wxCommandEvent& event) {
+    const wxString& query = m_textCtrlFind->GetValue();
+    const wxString& originalText = this->m_textCtrl->GetValue();
+    size_t currentPos = this->m_textCtrl->GetInsertionPoint();
+
+    size_t futurePos = originalText.find(query, currentPos + 1);
+    if (futurePos == currentPos + 1 || futurePos == wxString::npos) {
+        wxMessageBox(wxString::Format("No more result for the text '%s'", query), TP_PROJECT_NAME, wxOK | wxICON_INFORMATION);
+        EndModal(wxID_CANCEL);
+        return;
+    }
+    this->m_textCtrl->SetInsertionPoint(futurePos);
+
+    EndModal(wxID_OK);
+}
