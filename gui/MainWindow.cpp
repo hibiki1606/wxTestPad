@@ -2,7 +2,7 @@
 #include <wx/fontdlg.h>
 #include <wx/clipbrd.h>
 
-#include "MainWindow.h"
+#include "MainWindow.hpp"
 
 #include "wxtestpad.h"
 

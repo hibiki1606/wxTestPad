@@ -1,4 +1,4 @@
-#include "FindDialog.h"
+#include "FindDialog.hpp"
 
 FindDialog::FindDialog(wxWindow* parent, wxTextCtrl* textCtrl) : DialogBase(textCtrl), TpFindDialog(parent) {
 

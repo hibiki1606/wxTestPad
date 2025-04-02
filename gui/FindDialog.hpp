@@ -1,7 +1,7 @@
 #pragma once
 
 #include "buildergen/TpGUI.h"
-#include "DialogBase.h"
+#include "DialogBase.hpp"
 #include "wxtestpad.h"
 
 class FindDialog : public DialogBase, public TpFindDialog {

@@ -2,10 +2,10 @@
 #include <wx/txtstrm.h>
 #include <wx/wfstream.h>
 
-#include "Notepad.h"
+#include "Notepad.hpp"
 
-#include "gui/ReplaceDialog.h"
-#include "gui/FindDialog.h"
+#include "gui/ReplaceDialog.hpp"
+#include "gui/FindDialog.hpp"
 
 Notepad::Notepad(wxWindow* parent, wxTextCtrl* textCtrl)
     : m_parent(parent),

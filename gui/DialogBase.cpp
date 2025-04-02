@@ -1,4 +1,4 @@
-#include "DialogBase.h"
+#include "DialogBase.hpp"
 #include "wxtestpad.h"
 
 DialogBase::DialogBase(wxTextCtrl* textCtrl) {

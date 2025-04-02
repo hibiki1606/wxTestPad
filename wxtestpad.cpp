@@ -1,6 +1,6 @@
 #include "wxtestpad.h"
-#include "gui/MainWindow.h"
-#include "utilities/logging/TpLogFormatter.h"
+#include "gui/MainWindow.hpp"
+#include "utilities/logging/TpLogFormatter.hpp"
 
 class wxTestPadApp : public wxApp {
    public:

@@ -1,7 +1,7 @@
-#include "ReplaceDialog.h"
+#include "ReplaceDialog.hpp"
 
 #include "wxtestpad.h"
-#include "utilities/Utils.h"
+#include "utilities/Utils.hpp"
 
 ReplaceDialog::ReplaceDialog(wxWindow* parent, wxTextCtrl* textCtrl) : DialogBase(textCtrl), TpReplaceDialog(parent) {
 

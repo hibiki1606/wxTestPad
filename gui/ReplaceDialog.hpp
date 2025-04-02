@@ -1,6 +1,6 @@
 #pragma once
 
-#include "DialogBase.h"
+#include "DialogBase.hpp"
 #include "buildergen/TpGUI.h"
 
 class ReplaceDialog : public DialogBase, public TpReplaceDialog {

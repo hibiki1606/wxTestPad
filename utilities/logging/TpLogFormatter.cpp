@@ -1,4 +1,4 @@
-#include "TpLogFormatter.h"
+#include "TpLogFormatter.hpp"
 
 wxString TpLogFormatter::Format(wxLogLevel level, const wxString& msg, const wxLogRecordInfo& info) const {
     wxString logKind;

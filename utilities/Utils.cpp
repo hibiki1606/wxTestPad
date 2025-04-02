@@ -1,4 +1,4 @@
-#include "Utils.h"
+#include "Utils.hpp"
 
 bool Utils::ReplaceFromPosition(wxString& textRef, const size_t startPos, const wxString& from, const wxString& to) {
     if (textRef.Length() < startPos)
