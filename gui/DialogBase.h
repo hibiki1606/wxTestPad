@@ -4,9 +4,9 @@
 
 class DialogBase {
     public:
-    DialogBase(wxTextCtrl* textCtrl);
-    ~DialogBase();
+     DialogBase(wxTextCtrl* textCtrl);
+     ~DialogBase();
 
     protected:
-    wxTextCtrl* m_textCtrl;
+     wxTextCtrl* m_textCtrl;
 };
