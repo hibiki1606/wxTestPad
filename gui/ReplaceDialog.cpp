@@ -5,11 +5,9 @@
 
 ReplaceDialog::ReplaceDialog(wxWindow* parent, wxTextCtrl* textCtrl) : DialogBase(textCtrl), TpReplaceDialog(parent) {
     m_textCtrl = textCtrl;
-    wxLogDebug("Replace dialog has been created.");
 }
 
 ReplaceDialog::~ReplaceDialog() {
-    wxLogDebug("Replace dialog has been deleted.");
 }
 
 void ReplaceDialog::m_OkOnClick(wxCommandEvent& event) {
@@ -24,9 +22,7 @@ void ReplaceDialog::m_OkOnClick(wxCommandEvent& event) {
         m_textCtrl->SetValue(text);
         isOk = true;
     } else {
-        // I have to refactor these code anyway
         size_t currentPosition = m_textCtrl->GetInsertionPoint();
-        // wxLogDebug("%d", currentPosition);
         if (Utils::ReplaceFromPosition(text, currentPosition, replaceFrom, replaceTo)) {
             m_textCtrl->SetValue(text);
             // m_textCtrl->SetInsertionPoint();
@@ -36,6 +32,5 @@ void ReplaceDialog::m_OkOnClick(wxCommandEvent& event) {
             isOk = false;
         }
     }
-    wxLogDebug("endmodal");
     EndModal(isOk ? wxID_OK : wxID_CANCEL);
 }
