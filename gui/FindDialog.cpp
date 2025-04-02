@@ -4,10 +4,6 @@ FindDialog::FindDialog(wxWindow* parent, wxTextCtrl* textCtrl) : DialogBase(text
 
 }
 
-FindDialog::~FindDialog() {
-    
-}
-
 void FindDialog::m_FindNextOnClick(wxCommandEvent& event) {
     const wxString& query = m_textCtrlFind->GetValue();
     const wxString& originalText = this->m_textCtrl->GetValue();

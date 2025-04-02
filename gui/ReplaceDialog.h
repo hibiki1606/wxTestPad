@@ -6,7 +6,6 @@
 class ReplaceDialog : public DialogBase, public TpReplaceDialog {
     public:
     ReplaceDialog(wxWindow* parent, wxTextCtrl* textCtrl);
-    ~ReplaceDialog();
     
     protected:
     // virtual void OnClose(wxCloseEvent& event);

@@ -4,10 +4,7 @@
 #include "utilities/Utils.h"
 
 ReplaceDialog::ReplaceDialog(wxWindow* parent, wxTextCtrl* textCtrl) : DialogBase(textCtrl), TpReplaceDialog(parent) {
-    m_textCtrl = textCtrl;
-}
 
-ReplaceDialog::~ReplaceDialog() {
 }
 
 void ReplaceDialog::m_OkOnClick(wxCommandEvent& event) {
