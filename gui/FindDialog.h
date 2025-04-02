@@ -3,10 +3,10 @@
 #include "buildergen/TpGUI.h"
 #include "wxtestpad.h"
 
-class TpFindDialog : public FindDialog {
+class FindDialog : public TpFindDialog {
    public:
-    TpFindDialog(wxWindow* parent, wxTextCtrl* textCtrl);
-    ~TpFindDialog();
+    FindDialog(wxWindow* parent, wxTextCtrl* textCtrl);
+    ~FindDialog();
 
    protected:
     wxTextCtrl* m_textCtrl;

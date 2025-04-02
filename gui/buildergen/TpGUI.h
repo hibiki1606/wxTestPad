@@ -89,9 +89,9 @@ class MainFrame : public wxFrame
 };
 
 ///////////////////////////////////////////////////////////////////////////////
-/// Class ReplaceDialog
+/// Class TpReplaceDialog
 ///////////////////////////////////////////////////////////////////////////////
-class ReplaceDialog : public wxDialog
+class TpReplaceDialog : public wxDialog
 {
 	private:
 
@@ -109,16 +109,16 @@ class ReplaceDialog : public wxDialog
 
 	public:
 
-		ReplaceDialog( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("Replace..."), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxDEFAULT_DIALOG_STYLE );
+		TpReplaceDialog( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("Replace..."), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxDEFAULT_DIALOG_STYLE );
 
-		~ReplaceDialog();
+		~TpReplaceDialog();
 
 };
 
 ///////////////////////////////////////////////////////////////////////////////
-/// Class FindDialog
+/// Class TpFindDialog
 ///////////////////////////////////////////////////////////////////////////////
-class FindDialog : public wxDialog
+class TpFindDialog : public wxDialog
 {
 	private:
 
@@ -132,9 +132,9 @@ class FindDialog : public wxDialog
 
 	public:
 
-		FindDialog( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("Find Next..."), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxDEFAULT_DIALOG_STYLE );
+		TpFindDialog( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("Find Next..."), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxDEFAULT_DIALOG_STYLE );
 
-		~FindDialog();
+		~TpFindDialog();
 
 };
 

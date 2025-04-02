@@ -2,10 +2,10 @@
 
 #include "buildergen/TpGUI.h"
 
-class TpReplaceDialog : public ReplaceDialog {
+class ReplaceDialog : public TpReplaceDialog {
     public:
-    TpReplaceDialog(wxWindow* parent, wxTextCtrl* textCtrl);
-    ~TpReplaceDialog();
+    ReplaceDialog(wxWindow* parent, wxTextCtrl* textCtrl);
+    ~ReplaceDialog();
     
     protected:
     wxTextCtrl* m_textCtrl;

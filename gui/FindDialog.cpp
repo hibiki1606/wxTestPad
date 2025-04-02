@@ -1,15 +1,15 @@
-#include "TpFindDialog.h"
+#include "FindDialog.h"
 
-TpFindDialog::TpFindDialog(wxWindow* parent, wxTextCtrl* textCtrl) : FindDialog(parent) {
+FindDialog::FindDialog(wxWindow* parent, wxTextCtrl* textCtrl) : TpFindDialog(parent) {
     m_textCtrl = textCtrl;
     wxLogDebug("Find dialog has been created.");
 }
 
-TpFindDialog::~TpFindDialog() {
+FindDialog::~FindDialog() {
     wxLogDebug("Find dialog has been deleted.");
 }
 
-void TpFindDialog::m_FindNextOnClick(wxCommandEvent& event) {
+void FindDialog::m_FindNextOnClick(wxCommandEvent& event) {
     const wxString& query = m_textCtrlFind->GetValue();
     const wxString& originalText = this->m_textCtrl->GetValue();
     size_t currentPos = this->m_textCtrl->GetInsertionPoint();

@@ -2,11 +2,11 @@
 #include <wx/fontdlg.h>
 #include <wx/clipbrd.h>
 
-#include "TpMainFrame.h"
+#include "MainWindow.h"
 
 #include "wxtestpad.h"
 
-TpMainFrame::TpMainFrame(wxWindow* parent) : MainFrame(parent), m_notepad(this, m_textCtrl) {
+MainWindow::MainWindow(wxWindow* parent) : MainFrame(parent), m_notepad(this, m_textCtrl) {
     m_notepad.SetNotifyIsModifiedChanged([this](bool isModified) {
         this->SetTitle(
             wxString::Format("%s%s - %s", (isModified ? "*" : ""), m_notepad.GetDocumentTitle(), TP_PROJECT_NAME)
@@ -17,7 +17,7 @@ TpMainFrame::TpMainFrame(wxWindow* parent) : MainFrame(parent), m_notepad(this, 
     this->SetStatusText(wxString::Format("%s is ready!", TP_PROJECT_NAME));
 }
 
-void TpMainFrame::MainFrameOnClose(wxCloseEvent& event) {
+void MainWindow::MainFrameOnClose(wxCloseEvent& event) {
     if (!m_notepad.GetIsModified()) {
         event.Skip();
         return;
@@ -46,15 +46,15 @@ void TpMainFrame::MainFrameOnClose(wxCloseEvent& event) {
     return;
 }
 
-bool TpMainFrame::OpenFileDialog() {
+bool MainWindow::OpenFileDialog() {
     return m_notepad.Open();
 }
 
-bool TpMainFrame::SaveFileDialog() {
+bool MainWindow::SaveFileDialog() {
     return m_notepad.Save();
 }
 
-bool TpMainFrame::SetClipboard(const wxString& text) {
+bool MainWindow::SetClipboard(const wxString& text) {
     if (!wxTheClipboard->Open()) {
         wxLogError("Failed to open the clipboard");
         return false;
@@ -67,7 +67,7 @@ bool TpMainFrame::SetClipboard(const wxString& text) {
     return true;
 }
 
-wxString TpMainFrame::GetClipboard() {
+wxString MainWindow::GetClipboard() {
     if (!wxTheClipboard->Open()) {
         wxLogError("Failed to open the clipboard");
         return wxEmptyString;
@@ -84,7 +84,7 @@ wxString TpMainFrame::GetClipboard() {
     return data.GetText();
 }
 
-bool TpMainFrame::FontDialog() {
+bool MainWindow::FontDialog() {
     wxFontData data;
     data.SetInitialFont(m_textCtrl->GetFont());
 
@@ -97,7 +97,7 @@ bool TpMainFrame::FontDialog() {
     return true;
 }
 
-void TpMainFrame::m_ribbonOnClick(wxRibbonButtonBarEvent& event) {
+void MainWindow::m_ribbonOnClick(wxRibbonButtonBarEvent& event) {
     // ribbonButton events should be handled here
     // Enum of ribbonButton ID should be like, TP_RIBBON_{NAME}
     int ribbonControlId = event.GetId();
@@ -147,7 +147,7 @@ void TpMainFrame::m_ribbonOnClick(wxRibbonButtonBarEvent& event) {
     return;
 }
 
-void TpMainFrame::m_ribbonToggleTheme(wxCommandEvent& event) {
+void MainWindow::m_ribbonToggleTheme(wxCommandEvent& event) {
     // Too unstable to use
     // This function shouldn't be used
     int isClassic = event.IsChecked();

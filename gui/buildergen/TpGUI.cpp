@@ -85,7 +85,7 @@ MainFrame::~MainFrame()
 {
 }
 
-ReplaceDialog::ReplaceDialog( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxDialog( parent, id, title, pos, size, style )
+TpReplaceDialog::TpReplaceDialog( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxDialog( parent, id, title, pos, size, style )
 {
 	this->SetSizeHints( wxDefaultSize, wxDefaultSize );
 
@@ -130,14 +130,14 @@ ReplaceDialog::ReplaceDialog( wxWindow* parent, wxWindowID id, const wxString& t
 	this->Centre( wxBOTH );
 
 	// Connect Events
-	m_buttonOk->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( ReplaceDialog::m_OkOnClick ), NULL, this );
+	m_buttonOk->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( TpReplaceDialog::m_OkOnClick ), NULL, this );
 }
 
-ReplaceDialog::~ReplaceDialog()
+TpReplaceDialog::~TpReplaceDialog()
 {
 }
 
-FindDialog::FindDialog( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxDialog( parent, id, title, pos, size, style )
+TpFindDialog::TpFindDialog( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxDialog( parent, id, title, pos, size, style )
 {
 	this->SetSizeHints( wxDefaultSize, wxDefaultSize );
 
@@ -166,9 +166,9 @@ FindDialog::FindDialog( wxWindow* parent, wxWindowID id, const wxString& title, 
 	this->Centre( wxBOTH );
 
 	// Connect Events
-	m_buttonFindNext->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FindDialog::m_FindNextOnClick ), NULL, this );
+	m_buttonFindNext->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( TpFindDialog::m_FindNextOnClick ), NULL, this );
 }
 
-FindDialog::~FindDialog()
+TpFindDialog::~TpFindDialog()
 {
 }

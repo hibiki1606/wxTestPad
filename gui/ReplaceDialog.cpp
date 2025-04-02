@@ -1,18 +1,18 @@
-#include "TpReplaceDialog.h"
+#include "ReplaceDialog.h"
 
 #include "wxtestpad.h"
 #include "utilities/Utils.h"
 
-TpReplaceDialog::TpReplaceDialog(wxWindow* parent, wxTextCtrl* textCtrl) : ReplaceDialog(parent) {
+ReplaceDialog::ReplaceDialog(wxWindow* parent, wxTextCtrl* textCtrl) : TpReplaceDialog(parent) {
     m_textCtrl = textCtrl;
     wxLogDebug("Replace dialog has been created.");
 }
 
-TpReplaceDialog::~TpReplaceDialog() {
+ReplaceDialog::~ReplaceDialog() {
     wxLogDebug("Replace dialog has been deleted.");
 }
 
-void TpReplaceDialog::m_OkOnClick(wxCommandEvent& event) {
+void ReplaceDialog::m_OkOnClick(wxCommandEvent& event) {
     bool isOk = false;
     wxString text = m_textCtrl->GetValue();
     const wxString& replaceFrom = m_textCtrlFrom->GetValue();

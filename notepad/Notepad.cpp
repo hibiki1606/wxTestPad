@@ -4,8 +4,8 @@
 
 #include "Notepad.h"
 
-#include "gui/TpReplaceDialog.h"
-#include "gui/TpFindDialog.h"
+#include "gui/ReplaceDialog.h"
+#include "gui/FindDialog.h"
 
 Notepad::Notepad(wxWindow* parent, wxTextCtrl* textCtrl)
     : m_parent(parent),
@@ -64,13 +64,13 @@ bool Notepad::Save() {
 }
 
 bool Notepad::Find() {
-    TpFindDialog dialog(m_parent, m_textCtrl);
+    FindDialog dialog(m_parent, m_textCtrl);
     dialog.ShowModal();
     return true;
 }
 
 bool Notepad::Replace() {
-    TpReplaceDialog dialog(m_parent, m_textCtrl);
+    ReplaceDialog dialog(m_parent, m_textCtrl);
     int result = dialog.ShowModal();
     return true;
 }
