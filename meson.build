@@ -9,6 +9,7 @@ wx_dep = dependency(
 
 sources = files(
   'gui/buildergen/TpGUI.cpp',
+  'gui/DialogBase.cpp',
   'gui/MainWindow.cpp',
   'gui/FindDialog.cpp',
   'gui/ReplaceDialog.cpp',

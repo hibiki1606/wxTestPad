@@ -1,15 +1,14 @@
 #pragma once
 
+#include "DialogBase.h"
 #include "buildergen/TpGUI.h"
 
-class ReplaceDialog : public TpReplaceDialog {
+class ReplaceDialog : public DialogBase, public TpReplaceDialog {
     public:
     ReplaceDialog(wxWindow* parent, wxTextCtrl* textCtrl);
     ~ReplaceDialog();
     
     protected:
-    wxTextCtrl* m_textCtrl;
-
     // virtual void OnClose(wxCloseEvent& event);
     void m_OkOnClick(wxCommandEvent& event) override;
 };

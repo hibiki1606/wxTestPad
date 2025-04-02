@@ -1,7 +1,6 @@
 #include "FindDialog.h"
 
-FindDialog::FindDialog(wxWindow* parent, wxTextCtrl* textCtrl) : TpFindDialog(parent) {
-    m_textCtrl = textCtrl;
+FindDialog::FindDialog(wxWindow* parent, wxTextCtrl* textCtrl) : DialogBase(textCtrl), TpFindDialog(parent) {
     wxLogDebug("Find dialog has been created.");
 }
 
