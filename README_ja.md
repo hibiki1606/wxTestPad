@@ -16,7 +16,7 @@ C++コンパイラ, Meson, そして少なくともバージョン3以上のwxWi
 > Arch Linux上で必要なライブラリをインストール
 ```console
 pacman -Syu
-pacman -S meson wxgtk3
+pacman -S meson wxwidgets-gtk3
 ```
 
 > Windows上のMSYS2 (urct64)で必要なライブラリをインストール (MSYS2環境によって変わります)

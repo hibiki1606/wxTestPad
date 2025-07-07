@@ -16,7 +16,7 @@ Be super careful before running it, it always depends on your system!
 > Install libraries in Arch Linux
 ```console
 pacman -Syu
-pacman -S meson wxgtk3
+pacman -S meson wxwidgets-gtk3
 ```
 
 > Install libraries in MSYS2 (ucrt64) on Windows (It depends on your MSYS2 environment!)
