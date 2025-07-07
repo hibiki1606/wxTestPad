@@ -11,7 +11,7 @@ C++コンパイラ, Meson, そして少なくともバージョン3以上のwxWi
 
 プロジェクトをビルドするために必要なヘッダーやクラスを生成するために、wxFormBuilderも必要です。ヘッダーやクラスは [これ](/gui/buildergen/TpGUI.fbp) をビルドすることで生成できます。
 
-下記のコマンドは常にシステムに依存するので、それがあなたのシステムにとって本当に正しいコマンドなのかを確認してください。
+下記は常にシステムに依存するので、使用しているシステムにとって本当に最適なコマンドなのかを確認してから実行してください。
 
 > Arch Linux上で必要なライブラリをインストール
 ```console
@@ -25,7 +25,7 @@ pacman -Syu
 pacman -S mingw-w64-ucrt-x86_64-meson mingw-w64-ucrt-x86_64-wxwidgets3.2-msw
 ```
 
-> Build... ([meson.build](/meson.build)があるディレクトリと同じ場所)
+> Build... ([meson.build](/meson.build)があるディレクトリと同じ場所で)
 ```console
 meson setup builddir
 meson compile -C builddir
